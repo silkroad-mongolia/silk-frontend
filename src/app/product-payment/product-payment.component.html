@@ -1,0 +1,340 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>ЗАХИАЛГАА БҮРТГҮҮЛЭХ</ng-template>
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Барааны жагсаалт
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Бараанууд</th>
+                  <th></th>
+                  <th>Жин (кг)</th>
+                  <th>Тоо хэмжээ </th>
+                  <th>Нийт жин </th>
+                  <th>Үнэ </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><img style="width: 200px" src="{{cardimage}}"></td>
+                  <td>
+                    Cotton доод цамц футболк эмэгтэй урт ханцуйтай 2018 оны намар,
+                    өвлийн шинэ хар хатуу тохируулагчийг зэрлэг
+                    хатуу өнгө энэрэнгүй том дугуй хүзүү
+                    <br>
+                    <span>Дэлгүүр {{ story }}</span>
+                    <br>
+                    <span>Ангилал {{ category }}</span>
+                  </td>
+                  <td>{{productWeight}}</td>
+                  <td>{{unit}}</td>
+                  <td>{{productWeights}}</td>
+                  <td>{{costs}}</td>
+                  <td><button>Устгах</button></td>
+                </tr>
+                <tr>
+                  <td> Нийт:</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>{{allWeights}}</td>
+                  <td>{{allcosts}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Цааш</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Хүргэлтийн хаяг, гүйцэд бөглөнө үү!
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-form-field>
+                <mat-select placeholder="Хүргэлтийн хаяг">
+                  <mat-option value="addr">Хүргэлтийн хаяг 1</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Улс*:">
+                  <mat-option value="addr1">Монгол</mat-option>
+                </mat-select>
+
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="addr4" placeholder="Хороо / баг*:" type="string">
+                <mat-error *ngIf="addr4.invalid && addr4.touched">
+                  Хороо / баг дутуу байна, гүйцэд бөглөнө үү!
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-form-field>
+                <input matInput formControlName="firstname" placeholder="Овог*:">
+                <mat-error *ngIf="firstname.invalid && firstname.touched">
+                  Овог дутуу байна, гүйцэд бөглөнө үү!
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Хот / аймаг*:">
+                  <mat-option value="city" *ngFor="let city of cities">{{city}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="addr5" placeholder="Хаяг (байр, орц, тоот, орцны код)*:">
+                <mat-error *ngIf="addr5.invalid && addr5.touched">
+                  Хаяг дутуу байна, гүйцэд бөглөнө үү!
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <mat-form-field>
+                <input matInput formControlName="lastname" placeholder="Нэр*:">
+                <mat-error *ngIf="lastname.invalid && lastname.touched">
+                  Нэр дутуу байна, гүйцэд бөглөнө үү!
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="addr3" placeholder="Дүүрэг / Сум:*">
+                <mat-error *ngIf="addr3.invalid && addr3.touched">
+                  "Дүүрэг / Сум дутуу байна, гүйцэд бөглөнө үү!
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="phone" placeholder="Утас*:">
+                <mat-error *ngIf="phone.invalid && phone.touched">
+                  Утас дутуу байна, гүйцэд бөглөнө үү!
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Буцах</button>
+            <button mat-button color="primary" (click)="nextStep()">Цааш</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Хүргэлтийн хэлбэр
+            </mat-panel-title>
+          </mat-expansion-panel-header >
+          <div>
+            <mat-radio-group class="example-radio-group">
+              <mat-radio-button class="example-radio-button" *ngFor="let delivery of deliveries" [value]="delivery"
+                fxLayoutAlign="space-between center">
+                <div fxFlex="90">
+                  Тээврийн зардлыг ирэхээр нь төлнө + {{delivery.deli}}
+                  <br>
+                  АНХААР! Тээврийн зардал ороогүй дүн.
+                  <br>
+                  {{delivery.deli1}}
+                </div>
+                <hr>
+                <div>
+                  {{delivery.deli2}}
+                </div>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <span>Захиалгын ажилтанд хэлэх зүйл байвал энд бичнэ үү: </span>
+          <textarea cols="100" rows="2"></textarea>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <img src="/src/assets/image/pic1.jpg" style="width: 200px;">
+            <div>
+              <tr fxLayout="row" style="width: 40%" fxFlex="40">
+              <tr fxLayout="column">
+                <th>
+                  Нийт барааны үнэ:
+                </th>
+                <th>
+                  Ойролцоо жин:
+                </th>
+                <th>
+                  Тээврийн зардал: Тээврийн зардлыг ирэхээр нь төлнө +
+                </th>
+                <th>
+                  Гэрт хүргэлт:
+                </th>
+                <th>
+                  Нийт:
+                </th>
+              </tr>
+              <tr fxLayout="column">
+                <td>
+                  {{ allcosts }}
+                </td>
+                <td>
+                  {{ allWeights }}
+                </td>
+                <td>
+                  {{deliveries}}
+                </td>
+                <td>
+                  {{ allcosts }}
+                </td>
+                <td>
+                  {{ allcosts }}
+                </td>
+              </tr>
+            </div>
+          </div>
+          <a routerLink="/">
+            <mat-icon>local_shipping</mat-icon> Тээврийн зардал тооцоолох
+          </a>
+          <hr>
+          <mat-card>АНХААР! Уг төлж буй дүнд тээврийн зардал ороогүй болно. Таны бараа Улаанбаатарт ирснийх нь дараа
+            тээврийн зардлыг төлөөд бараагаа авна. Барааны БОДИТ жин 0,9кг дотор бол тээврийн зардал үнэгүй, +1кг
+            тутамд 1900₮ нэмэгдэнэ. Овор хэмжээ ихтэй чихмэл тоглоом, хивсэнцэр, дугуй, зурагт, буйдан, хөргөгч гэх мэт
+            овортой барааны тээврийн зардлыг <a routerLink="/">үйлчилгээний нөхцөлд</a> заасны дагуу м.кубээр бодно.
+            Дээрх үйлчилгээний
+            нөхцөлийг зөвшөөрч байвал "ЗАХИАЛГА ХИЙХ" товчийг дарна уу, хэрэв танд асуух зүйл байвал ЗАХИАЛГЫН
+            АЖИЛТАНТАЙ холбогдох боломжтой.</mat-card>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Буцах</button>
+            <button mat-button matStepperNext color="primary" (click)="nextStep()">End</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel> ТӨЛБӨР ТӨЛӨХ</ng-template>
+      <mat-card-content>
+        <h3> Захиалгын мэдээлэл </h3>
+        <hr>
+        <span>Захиалга № {{ code }}</span>
+        <br>
+        <span>Төлөв: {{ mode }}</span>
+        <br>
+        <span>Хүргэлтийн хаяг: Монгол Улс, {{cities}}, {{addr3}}, {{addr4}}, {{addr5}}</span>
+        <h3>Төлбөр</h3>
+        <hr>
+        <span>
+          Дүн: {{ allcosts}}
+        </span>
+        <br>
+        <span>
+          Төлсөн: {{ paycosts}}
+        </span>
+        <br>
+        <span>
+          Шилжүүлэх дүн: {{ transcost}}
+        </span>
+        <br>
+        <span>Таны захиалга амжилттай бүртгэгдлээ.
+        </span><br>
+        <span>
+          Төлбөр төлөгдсөний дараа таны захиалга хийгдэхийг анхаарна уу! Доорх сонголтуудаас сонгон төлбөрөө төлөх
+          боломжтой.
+        </span>
+        <mat-card-header>
+          QPay төлбөр төлөх
+        </mat-card-header>
+        <mat-card>
+          <span>
+            Та смарт банкны аппликейшнаар кодыг уншуулан төлбөр төлнө үү.
+          </span>
+          <div fxLayout="row">
+            <div>
+              <img src="/src/assets/image/pic1.jpg" style="width: 150px">
+            </div>
+            <span fxFlex="60">
+              Хэрэв та гар утаснаасаа орж байгаа бол <a routerLink="/">ЭНД ДАРЖ</a> банкны апп-аа сонгон төлбөрөө төлнө
+              үү.
+            </span>
+            <div>
+              <button mat-button style="background: aqua">Төлөгдсөн эсэхийг шалгах </button>
+            </div>
+          </div>
+        </mat-card>
+        <h3>Дансны шилжүүлэг</h3>
+        <hr>
+        <mat-card>
+          <div fxLayout="row">
+            <div fxLayout="column">
+
+              <th>
+                Банк / данс:
+              </th>
+              <th>
+                Төлбөр хүлээн авагч:
+              </th>
+              <th>
+                Гүйлгээний утга:
+
+              </th>
+              <th>
+                Шилжүүлэх дүн:
+              </th>
+
+            </div>
+            <div fxLayout="column">
+
+              <td>
+                Хаан банк, 123123123 тоот дансанд шилжүүлнэ үү
+              </td>
+              <td>
+                monchir
+              </td>
+              <td>
+                {{code}}
+              </td>
+              <td>
+                {{ allcosts }}
+              </td>
+            </div>
+          </div>
+          <span>Та гүйлгээний утга дээр захиалгынхаа {{code}} дугаарыг бичин ХААН БАНК 123123123 monchir дансанд
+            төлбөрөө
+            шилжүүлнэ үү.</span>
+          <br>
+          <span style="color: red">Данс шилжүүлгээр хийсэн төлбөр ажлын өдрүүдэд 09:00~18:00 цагийн хооронд
+            баталгаажихыг анхаарна уу.
+            Илүү хурдан бараагаа захиалж авахыг хүсвэл QPay-г санал болгож байна.</span>
+        </mat-card>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header >
+            <mat-panel-title>
+              Купоны хөнгөлөлт оруулах
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <span>Хэрэв танд хөнгөлөлт урамшууллын купоны дугаар байгаа бол энд оруулна уу. Байхгүй бол алгасна уу.</span>
+          <mat-form-field>
+            <input matInput placeholder="Кодоо оруулна уу">
+          </mat-form-field>
+          <button mat-button>Идвэхжүүлэх</button>
+        </mat-expansion-panel>
+      </mat-card-content>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Цааш</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

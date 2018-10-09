@@ -1,0 +1,38 @@
+<mat-card>
+  <form [formGroup]="myForm">
+    Value: {{myForm.value | json }}
+    <hr>
+    <h4>Register</h4>
+
+    <mat-form-field>
+      <input matInput placeholder="First name" formControlName="firstname">
+      <mat-error *ngIf="firstname.invalid && firstname.touched">
+          First name is invalvid.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Last name" formControlName="lastname">
+      <mat-error *ngIf="lastname.invalid && lastname.touched">
+          Last name is invalvid.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="email" formControlName="email" type="email">
+      <mat-error *ngIf="email.invalid && email.touched">
+        E-Mail is invalvid.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Shuold bbe at least 6 characters long.">
+      <input matInput placeholder="password" formControlName="password" ngModel type="password" required minlength="6">
+      <mat-hint align="end">
+        Must have one letter, and one number
+      </mat-hint>
+      <mat-error *ngIf="password.invalid && password.touched">
+        Your email or password does not look right
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary">Sign Up</button>
+  </form>
+</mat-card>
