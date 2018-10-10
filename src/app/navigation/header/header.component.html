@@ -4,27 +4,37 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <a routerLink="/"><img src="assets/image/logo.jpg" height="50" width="180" ></a>
+  <a routerLink="/"><img src="assets/image/logo.jpg" height="50" width="180"></a>
   <div fxFlex></div>
 
   <!-- icontoitogoo click hiih searchee -->
   <div>
     <input type="text" name="search" (keyup.enter)="search()">
-    <button mat-icon-button><mat-icon>search</mat-icon></button>
+    <button mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
     <span id="searchBtn" (click)="search()">
     </span>
   </div>
   <div fxFlex></div>
-  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-<mat-menu #menu="matMenu">
-   <div >
-    <ul fxLayout="column">
-      <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</button>
-      <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/signup" routerLinkActive="warn">Signup</button>
-      <button *ngIf="userIsAuthenticated" mat-button (click)="onLogout()">Logout</button>
-    </ul>
-  </div>
+  <div fxLayout="row" class="callnumber">
+    <mat-icon class="callnumbericon">call</mat-icon>
+    <div fxLayout="column">
+      <span fxFlex="60">98434955</span>
+      <span>Да - Ба 9:00-18:00</span>
+    </div>
 
-</mat-menu>
+  </div>
+  <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+  <mat-menu #menu="matMenu">
+    <div>
+      <ul fxLayout="column">
+        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</button>
+        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/signup" routerLinkActive="warn">Signup</button>
+        <button *ngIf="userIsAuthenticated" mat-button (click)="onLogout()">Logout</button>
+      </ul>
+    </div>
+
+  </mat-menu>
 
 </mat-toolbar>

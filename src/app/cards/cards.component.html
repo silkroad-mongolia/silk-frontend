@@ -14,14 +14,10 @@
     </div>
     <div>
       <p>
-        <mat-checkbox>Disable select</mat-checkbox>
-      </p>
-      <p>
         <mat-card-header>
           <Span>Дэлгүүрийн нэр: 八闽王子 </Span>
         </mat-card-header>
         <mat-card fxLayout="row">
-          <mat-checkbox></mat-checkbox>
           <img src="{{ cardimage }}">
           <div>
             <span>Барааны код: {{productId}}</span>
@@ -37,13 +33,13 @@
           </div>
           <div fxLayout="column">
             <div>
-              <button mat-raised-button>
+              <button mat-flat-button>
                 <mat-icon>track_changes</mat-icon>Сонголт уучлөх
               </button>
-              <button mat-raised-button>
+              <button mat-flat-button>
                 <mat-icon>favorite</mat-icon>Таалагдсан бараа
               </button>
-              <button mat-raised-button>
+              <button mat-flat-button>
                 <mat-icon>delete_forever</mat-icon>Устгах
               </button>
             </div>
@@ -71,16 +67,15 @@
     </div>
   </div>
   <div>
-    <button mat-raised-button routerLink="/">
+    <button mat-icon-button routerLink="/">
       <mat-icon>help</mat-icon>хэрхэн төлбөр хийх вэ?
     </button>
     <br>
     <br>
     <br>
     <mat-card>
-      <span>Хөнгөлөлт: {{ procent }}</span>
       <span>Нийт: {{ allcosts}} ₮</span>
-      <button>Захиалга хийх({{ unit }})</button>
+      <button mat-flat-button routerLink="/payment">Захиалга хийх({{ unit }})</button>
     </mat-card>
   </div>
 

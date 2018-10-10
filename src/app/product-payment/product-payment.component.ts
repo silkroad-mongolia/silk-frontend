@@ -29,38 +29,68 @@ export class ProductPaymentComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   step = 0;
-  story = ' 八闽王子';
-  category = 'Подволк';
-  productWeight = 0.27;
-  unit = 1;
-  productWeights = 0.27;
-  costs = 12705;
-  cardimage = 'http://icons.iconarchive.com/icons/goescat/macaron/icons-390.jpg';
+
+  story: string;
+  category: string;
+  productWeight: number;
+  unit: number;
+  productWeights: number;
+  costs: number;
+  productId: number;
+  productSize: string;
+  productColor: string;
+
+  cardItems = [{
+      story: ' 八闽王子',
+      category: 'Подволк',
+      // productWeight: 0.27,
+      productId: '' ,
+      productSize: '' ,
+      productColor: '',
+      unit: 1,
+      // productWeights: 0.27,
+      costs: 12705,
+      cardimage: 'http://icons.iconarchive.com/icons/goescat/macaron/icons-390.jpg'
+    },
+    {
+      story: ' 八闽王子',
+      category: 'Подволк',
+      // productWeight: 0.27,
+      productId: '' ,
+      productSize: '' ,
+      productColor: '',
+      unit: 1,
+      // productWeights: 0.27,
+      costs: 12705,
+      cardimage: 'http://icons.iconarchive.com/icons/goescat/macaron/icons-390.jpg'
+    },
+  ];
+
+
   cities = ['ub', 'darhan', 'erdenet'];
   code = 'ORD-0000011353';
   mode = [''];
-  allWeights = this.unit * this.productWeights;
-  allcosts = this.unit * this.costs ;
-  paycosts = 1000 ;
-  transcost = this.allcosts - this.paycosts;
-  delivert: string;
+
+
+  // allWeights = 11;
+  // allcosts = 22;
+  // paycosts = 1000;
+  // transcost = this.allcosts - this.paycosts;
   deliveries = [{
       deli: 'Оффисоос ирж авна',
-      deli1: 'Улаанбаатарт таны захиалга ирэхэд мессэжээр мэдэгдэх бөгөөд та манай оффисоос ирж бараагаа авна.',
       deli2: '0₮'
     },
     {
       deli: 'Гэртээ хүргүүлээд авна',
-      deli1: '',
-      deli2: '3000₮'
-    },
-    {
-      deli: 'Орон нутгийн унаанд өгч явуулна',
-      deli1: 'Орон нутгаас захиалга хийж байгаа бол уг сонголтыг сонгож өгнө үү',
       deli2: '3000₮'
     }
   ];
-
+  getTotalUnit() {
+    return this.cardItems.map(t => t.unit).reduce((acc, value) => acc + value, 0);
+  }
+  getTotalCost() {
+    return this.cardItems.map(t => t.costs).reduce((acc, value) => acc + value, 0);
+  }
   setStep(index: number) {
     this.step = index;
   }

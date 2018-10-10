@@ -9,11 +9,9 @@
       <div>
         <span>Спорт костюм эрэгтэй цамц нэхэмжлэл хавар, намрын чөл</span>
       </div>
-      <mat-card class="costmat">
-        <span type="number"> {{ realcost }} ₮</span>
-        <br>
-        <br>
-        <span>{{ cost }} ₮</span>
+      <mat-card class="costmat" fxLayoutAlign="center center">
+        <!-- <span type="number"> {{ realcost }} ₮</span> -->
+        <h2>{{ cost }} ₮</h2>
       </mat-card>
 
       <div>
@@ -38,9 +36,9 @@
         <div>
           <span>Өнгө: </span>
           <br>
-          <mat-button-toggle-group name="colors">
+          <mat-button-toggle-group name="colors" >
             <mat-button-toggle *ngFor="let color of colors" value="{{color.colorvalue}}">
-              {{color.colorname}}
+              <img src="{{color.src}}" style="width: 50%" >
             </mat-button-toggle>
           </mat-button-toggle-group>
         </div>
