@@ -1,21 +1,43 @@
-<slideshow #slideshow
-           [imageUrls]="imageUrls"
-           [height]="height"
-           [minHeight]="minHeight"
-           [arrowSize]="arrowSize"
-           [showArrows]="showArrows"
-           [disableSwiping]="disableSwiping"
-           [autoPlay]="autoPlay"
-           [stopAutoPlayOnSlide]="stopAutoPlayOnSlide"
-           [debug]="debug"
-           [backgroundSize]="backgroundSize"
-           [backgroundPosition]="backgroundPosition"
-           [backgroundRepeat]="backgroundRepeat"
-           [showDots]="showDots"
-           [dotColor]="dotColor"
-           [showCaptions]="showCaptions"
-           [captionColor]="captionColor"
-           [captionBackground]="captionBackground"
-           [lazyLoad]="lazyLoad"
-           [hideOnNoSlides]="hideOnNoSlides">
+<slideshow #slideshow [imageUrls]="imageUrls" [height]="height" [minHeight]="minHeight" [arrowSize]="arrowSize"
+  [showArrows]="showArrows" [disableSwiping]="disableSwiping" [autoPlay]="autoPlay" [stopAutoPlayOnSlide]="stopAutoPlayOnSlide"
+  [debug]="debug" [backgroundSize]="backgroundSize" [backgroundPosition]="backgroundPosition" [backgroundRepeat]="backgroundRepeat"
+  [showDots]="showDots" [dotColor]="dotColor" [showCaptions]="showCaptions" [captionColor]="captionColor"
+  [captionBackground]="captionBackground" [lazyLoad]="lazyLoad" [hideOnNoSlides]="hideOnNoSlides">
 </slideshow>
+
+<h2 fxLayoutAlign="center center">Үйлчлүүлэгчид бидний тухай</h2>
+<hr>
+<h2>Санал болгох бараанууд</h2>
+<mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-tile *ngFor="let productsSuggestion of productsSuggestions; let i = index">
+    <a [href]="productsSuggestion.href"><img [src]="productsSuggestion.url"></a>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<h2>Эрэлттэй бараанууд</h2>
+<mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-tile *ngFor="let productsExpected of productsExpecteds; let i = index">
+    <a [href]="productsExpected.href"><img [src]="productsExpected.url"></a>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<h2>Сүүлд үзсэн бараанууд</h2>
+<mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-tile *ngFor="let productLastseen of productLastseens; let i = index">
+    <a [href]="productLastseen.href"><img [src]="productLastseen.url"></a>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<h2>Алдартай брендүүд</h2>
+<mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-tile *ngFor="let brand of brands; let i = index">
+    <a [href]="brand.href"><img [src]="brand.url"></a>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<h2>Шилдэг дэлгүүрүүд</h2>
+<mat-grid-list cols="4" rowHeight="4:1">
+  <mat-grid-tile *ngFor="let product of products; let i = index">
+    <a [href]="product.href"><img [src]="product.url"></a>
+  </mat-grid-tile>
+</mat-grid-list>

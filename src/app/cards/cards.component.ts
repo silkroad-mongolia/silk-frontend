@@ -15,7 +15,7 @@ export class CardsComponent implements OnInit {
   productWeight = '0.270 кг.';
   procent = '' ;
   allcosts = '56,210 ';
-  unit = '' ;
+  unit = 1 ;
   constructor() { }
 
   ngOnInit() {
