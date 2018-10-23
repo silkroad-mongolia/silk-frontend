@@ -15,9 +15,6 @@ import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { ProductComponent } from './product/product.component';
-import { GalleryModule } from '@ngx-gallery/core';
-import { LightboxModule } from '@ngx-gallery/lightbox';
-import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { CardsComponent } from './cards/cards.component';
 import { ProductPaymentComponent } from './product-payment/product-payment.component';
 import { CalculatorComponent } from './calculator/calculator.component';
@@ -54,9 +51,6 @@ import { ProfileComponent } from './profile/profile.component';
     SlideshowModule,
     ReactiveFormsModule,
     FormsModule,
-    GalleryModule.forRoot(),
-    LightboxModule.forRoot(),
-    GallerizeModule,
     HttpClientModule
 
   ],

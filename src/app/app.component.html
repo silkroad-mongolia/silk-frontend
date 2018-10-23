@@ -3,6 +3,7 @@
     <app-sidenav (closeSidenav)="sidenav.close()"></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
+    <mat-progress-bar *ngIf="showLoadingIndicator" style="color: brown" mode="indeterminate"></mat-progress-bar>
     <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
     <main>
       <router-outlet></router-outlet>
@@ -10,3 +11,4 @@
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<div *ngIf="showLoadingIndicator">Loading</div>
