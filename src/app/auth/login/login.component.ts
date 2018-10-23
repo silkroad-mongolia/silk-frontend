@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {NgForm} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,34 +10,43 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 
-export class LoginComponent implements OnInit {
-  favoriteSeason: string;
-  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
-  myForm: FormGroup;
+export class LoginComponent implements OnInit, OnDestroy {
 
-  constructor(private fb: FormBuilder) { }
+  isLoading = false;
+
+  loginForm: FormGroup;
+  private authStatusSub: Subscription;
+  constructor(private fb: FormBuilder, public authService: AuthService) { }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
+    this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
+      authStatus => {
+        this.isLoading = false;
+      }
+    );
+    this.loginForm = this.fb.group({
       email: ['', [
         Validators.required,
         Validators.email
       ]],
-     password: ['', [
-      Validators.required,
-      Validators.pattern('[a-z]{2}')
+      password: ['', [
+      Validators.required
      ]]
     });
-
-    this.myForm.valueChanges.subscribe(console.log);
   }
 
   get email() {
-    return this.myForm.get('email');
+    return this.loginForm.get('email');
   }
   get password() {
-    return this.myForm.get('password');
+    return this.loginForm.get('password');
   }
 
-  onLogin() { }
+  onLogin() {
+    this.isLoading = true;
+    this.authService.login(this.email.value, this.password.value);
+   }
+   ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
+  }
 }

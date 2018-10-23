@@ -4,12 +4,12 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <a routerLink="/"><img src="assets/image/logo.jpg" height="50" width="180"></a>
+  <a routerLink="/"><img src="assets/image/logo.jpg" routerLink="/" height="50" width="180"></a>
   <div fxFlex></div>
 
-  <!-- icontoitogoo click hiih searchee -->
+
   <div>
-    <input type="text" name="search" (keyup.enter)="search()">
+    <input type="text" name="search" (keyup.enter)="search()" (click)=search()>
     <button mat-icon-button>
       <mat-icon>search</mat-icon>
     </button>
@@ -25,7 +25,9 @@
     </div>
 
   </div>
-  <button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
   <mat-menu #menu="matMenu">
     <div>
       <ul fxLayout="column">
@@ -36,5 +38,6 @@
     </div>
 
   </mat-menu>
+
 
 </mat-toolbar>

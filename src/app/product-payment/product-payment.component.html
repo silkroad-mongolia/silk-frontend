@@ -3,176 +3,164 @@
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>ЗАХИАЛГАА БҮРТГҮҮЛЭХ</ng-template>
       <mat-accordion class="example-headers-align">
-        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Барааны жагсаалт
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Бараанууд</th>
-                  <th></th>
-                  <th></th>
-                  <!-- Жин (кг) -->
-                  <th>Тоо хэмжээ </th>
-                  <th></th>
-                  <!-- Нийт жин  -->
-                  <th>Үнэ </th>
-                </tr>
-              </thead>
-              <tbody >
-                <tr *ngFor="let cardItem of cardItems">
-                  <td><img style="width: 200px" src="{{cardItem.cardimage}}"></td>
-                  <td>
-                    Cotton доод цамц футболк эмэгтэй урт ханцуйтай 2018 оны намар,
-                    өвлийн шинэ хар хатуу тохируулагчийг зэрлэг
-                    хатуу өнгө энэрэнгүй том дугуй хүзүү
-                    <br>
-                    <span> Барааны код: {{cardItem.productId}}</span>
-                    <br>
-                    <span>Хэмжээ: {{cardItem.productSize}}</span>
-                    <br>
-                    <span>Өнгө: {{cardItem.productColor}}</span>
-                    <br>
-                    <span>Дэлгүүр: {{ cardItem.story }}</span>
-                    <br>
-                    <span>Ангилал: {{ cardItem.category }}</span>
-                  </td>
-                  <td></td>
-                  <!-- {{cardsItem.productWeight}} -->
-                  <td>{{cardItem.unit}}</td>
-                  <td></td>
-                  <!-- {{cardsItem.productWeights}} -->
-                  <td>{{cardItem.costs}}</td>
-                  <td><button mat-button>Устгах</button></td>
-                </tr>
-                <tr>
-                  <td> Купоны хөнгөлөлт оруулах:</td>
-                  <td>
-                    <mat-form-field>
-                      <input matInput placeholder="Кодоо оруулна уу">
-                    </mat-form-field>
-                  </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td><button mat-button>Идвэхжүүлэх</button></td>
-                </tr>
-                <tr>
-                  <td> Нийт:</td>
-                  <td></td>
-                  <td></td>
-                  <td> {{getTotalUnit()}}</td>
-                  <td></td>
-                  <td>{{getTotalCost()}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div *ngIf="getTotalCost() > 4999">
-            Хүргэлт:
-            <div>
-              <mat-radio-group class="example-radio-group">
-                <mat-radio-button class="example-radio-button" *ngFor="let delivery of deliveries" [value]="delivery">
-                  <div fxLayoutAlign="space-around center">
-                    <th>
-                      {{delivery.deli}}
-                    </th>
-                    {{delivery.deli2}}
-                  </div>
-                </mat-radio-button>
-              </mat-radio-group>
-            </div>
 
+        <mat-panel-title>
+          Хүргэлтийн хаяг, гүйцэд бөглөнө үү!
+        </mat-panel-title>
+
+        <div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field>
+              <mat-select placeholder="Хүргэлтийн хаяг">
+                <mat-option value="addr">Хүргэлтийн хаяг 1</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="Улс*:">
+                <mat-option value="addr1">Монгол</mat-option>
+              </mat-select>
+
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="addr4" placeholder="Хороо / баг*:" type="string">
+              <mat-error *ngIf="addr4.invalid && addr4.touched">
+                Хороо / баг дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
           </div>
 
-          <mat-action-row>
-            <button mat-button color="primary"  (click)="nextStep()" >Цааш</button>
-          </mat-action-row>
-        </mat-expansion-panel>
-
-        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Хүргэлтийн хаяг, гүйцэд бөглөнө үү!
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <div>
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-              <mat-form-field>
-                <mat-select placeholder="Хүргэлтийн хаяг">
-                  <mat-option value="addr">Хүргэлтийн хаяг 1</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-select placeholder="Улс*:">
-                  <mat-option value="addr1">Монгол</mat-option>
-                </mat-select>
-
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput formControlName="addr4" placeholder="Хороо / баг*:" type="string">
-                <mat-error *ngIf="addr4.invalid && addr4.touched">
-                  Хороо / баг дутуу байна, гүйцэд бөглөнө үү!
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-              <mat-form-field>
-                <input matInput formControlName="firstname" placeholder="Овог*:">
-                <mat-error *ngIf="firstname.invalid && firstname.touched">
-                  Овог дутуу байна, гүйцэд бөглөнө үү!
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-select placeholder="Хот / аймаг*:">
-                  <mat-option value="city" *ngFor="let city of cities">{{city}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput formControlName="addr5" placeholder="Хаяг (байр, орц, тоот, орцны код)*:">
-                <mat-error *ngIf="addr5.invalid && addr5.touched">
-                  Хаяг дутуу байна, гүйцэд бөглөнө үү!
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-              <mat-form-field>
-                <input matInput formControlName="lastname" placeholder="Нэр*:">
-                <mat-error *ngIf="lastname.invalid && lastname.touched">
-                  Нэр дутуу байна, гүйцэд бөглөнө үү!
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput formControlName="addr3" placeholder="Дүүрэг / Сум:*">
-                <mat-error *ngIf="addr3.invalid && addr3.touched">
-                  "Дүүрэг / Сум дутуу байна, гүйцэд бөглөнө үү!
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput formControlName="phone" placeholder="Утас*:">
-                <mat-error *ngIf="phone.invalid && phone.touched">
-                  Утас дутуу байна, гүйцэд бөглөнө үү!
-                </mat-error>
-              </mat-form-field>
-            </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field>
+              <input matInput formControlName="firstname" placeholder="Овог*:">
+              <mat-error *ngIf="firstname.invalid && firstname.touched">
+                Овог дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="Хот / аймаг*:">
+                <mat-option value="city" *ngFor="let city of cities">{{city}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="addr5" placeholder="Хаяг (байр, орц, тоот, орцны код)*:">
+              <mat-error *ngIf="addr5.invalid && addr5.touched">
+                Хаяг дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
           </div>
-          <mat-action-row>
-            <button mat-button color="warn" (click)="prevStep()">Буцах</button>
-            <button mat-button color="primary" *ngIf="phone.invalid && addr3.invalid && lastname.invalid && addr5.invalid && firstname.invalid && addr4.invalid"  (click)="nextStep()" matStepperNext>Цааш</button>
-          </mat-action-row>
-        </mat-expansion-panel>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field>
+              <input matInput formControlName="lastname" placeholder="Нэр*:">
+              <mat-error *ngIf="lastname.invalid && lastname.touched">
+                Нэр дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="addr3" placeholder="Дүүрэг / Сум:*">
+              <mat-error *ngIf="addr3.invalid && addr3.touched">
+                "Дүүрэг / Сум дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="phone" placeholder="Утас*:">
+              <mat-error *ngIf="phone.invalid && phone.touched">
+                Утас дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()" matStepperNext>Цааш</button>
+        </mat-action-row>
       </mat-accordion>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel> ТӨЛБӨР ТӨЛӨХ</ng-template>
+
+          <mat-panel-title>
+            Барааны жагсаалт
+          </mat-panel-title>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>Бараанууд</th>
+                <th></th>
+                <th></th>
+                <!-- Жин (кг) -->
+                <th>Тоо хэмжээ </th>
+                <th></th>
+                <!-- Нийт жин  -->
+                <th>Үнэ </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cardItem of cardItems">
+                <td><img style="width: 200px" src="{{cardItem.cardimage}}"></td>
+                <td>
+                  Cotton доод цамц футболк эмэгтэй урт ханцуйтай 2018 оны намар,
+                  өвлийн шинэ хар хатуу тохируулагчийг зэрлэг
+                  хатуу өнгө энэрэнгүй том дугуй хүзүү
+                  <br>
+                  <span> Барааны код: {{cardItem.productId}}</span>
+                  <br>
+                  <span>Хэмжээ: {{cardItem.productSize}}</span>
+                  <br>
+                  <span>Өнгө: {{cardItem.productColor}}</span>
+                  <br>
+                  <span>Дэлгүүр: {{ cardItem.story }}</span>
+                  <br>
+                  <span>Ангилал: {{ cardItem.category }}</span>
+                </td>
+                <td></td>
+                <!-- {{cardsItem.productWeight}} -->
+                <td>{{cardItem.unit}}</td>
+                <td></td>
+                <!-- {{cardsItem.productWeights}} -->
+                <td>{{cardItem.costs}}</td>
+                <td><button mat-button>Устгах</button></td>
+              </tr>
+              <tr>
+                <td> Купоны хөнгөлөлт оруулах:</td>
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder="Кодоо оруулна уу">
+                  </mat-form-field>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><button mat-button>Идвэхжүүлэх</button></td>
+              </tr>
+              <tr>
+                <td> Нийт:</td>
+                <td></td>
+                <td></td>
+                <td> {{getTotalUnit()}}</td>
+                <td></td>
+                <td>{{getTotalCost()}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="getTotalCost() > 4999">
+          Хүргэлт:
+          <div>
+            <mat-radio-group class="example-radio-group">
+              <mat-radio-button class="example-radio-button" *ngFor="let delivery of deliveries" [value]="delivery">
+                <div fxLayoutAlign="space-around center">
+                  <th>
+                    {{delivery.deli}}
+                  </th>
+                  {{delivery.deli2}}
+                </div>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
       <mat-card-content>
         <h3> Захиалгын мэдээлэл </h3>
         <hr>
@@ -197,7 +185,7 @@
           Төлбөр төлөгдсөний дараа таны захиалга хийгдэхийг анхаарна уу! Доорх сонголтуудаас сонгон төлбөрөө төлөх
           боломжтой.
         </span>
-<!--
+        <!--
         <mat-card>
           <h3>
             QPay төлбөр төлөх
@@ -273,12 +261,5 @@
       </div>
     </form>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
+
 </mat-horizontal-stepper>
