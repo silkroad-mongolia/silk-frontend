@@ -1,9 +1,4 @@
-<slideshow #slideshow [imageUrls]="imageUrls" [height]="height" [minHeight]="minHeight" [arrowSize]="arrowSize"
-  [showArrows]="showArrows" [disableSwiping]="disableSwiping" [autoPlay]="autoPlay" [stopAutoPlayOnSlide]="stopAutoPlayOnSlide"
-  [debug]="debug" [backgroundSize]="backgroundSize" [backgroundPosition]="backgroundPosition" [backgroundRepeat]="backgroundRepeat"
-  [showDots]="showDots" [dotColor]="dotColor" [showCaptions]="showCaptions" [captionColor]="captionColor"
-  [captionBackground]="captionBackground" [lazyLoad]="lazyLoad" [hideOnNoSlides]="hideOnNoSlides">
-</slideshow>
+<app-category></app-category>
 
 <h2 fxLayoutAlign="center center">Үйлчлүүлэгчид бидний тухай</h2>
 <hr>
@@ -29,11 +24,6 @@
 </mat-grid-list>
 
 <h2>Алдартай брендүүд</h2>
-<mat-grid-list cols="4" rowHeight="4:1">
-  <mat-grid-tile *ngFor="let brand of brands; let i = index">
-    <a [href]="brand.href"><img [src]="brand.url"></a>
-  </mat-grid-tile>
-</mat-grid-list>
 
 <h2>Шилдэг дэлгүүрүүд</h2>
 <mat-grid-list cols="4" rowHeight="4:1">
@@ -41,3 +31,11 @@
     <a [href]="product.href"><img [src]="product.url"></a>
   </mat-grid-tile>
 </mat-grid-list>
+
+
+<div id="mySidenav" class="sidenav">
+    <a href="#" id="about">About</a>
+    <a href="#" id="blog">Blog</a>
+    <a href="#" id="projects">Projects</a>
+    <a href="#" id="contact">Contact</a>
+  </div>

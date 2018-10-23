@@ -12,7 +12,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavComponent } from './navigation/sidenav/sidenav.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FooterComponent } from './navigation/footer/footer.component';
 import { ProductComponent } from './product/product.component';
 import { GalleryModule } from '@ngx-gallery/core';
@@ -21,7 +21,12 @@ import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { CardsComponent } from './cards/cards.component';
 import { ProductPaymentComponent } from './product-payment/product-payment.component';
 import { CalculatorComponent } from './calculator/calculator.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth/auth.guard';
+import {AuthInterceptor} from './auth/auth-interceptor';
+import { CategoryComponent } from './category/category.component';
+import { ProductsComponent } from './products/products.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { CalculatorComponent } from './calculator/calculator.component';
     ProductComponent,
     CardsComponent,
     ProductPaymentComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    CategoryComponent,
+    ProductsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -45,12 +53,17 @@ import { CalculatorComponent } from './calculator/calculator.component';
     MaterialModule,
     SlideshowModule,
     ReactiveFormsModule,
+    FormsModule,
     GalleryModule.forRoot(),
     LightboxModule.forRoot(),
-    GallerizeModule
+    GallerizeModule,
+    HttpClientModule
 
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
