@@ -1,7 +1,8 @@
 <div fxLayout="row">
-  <div fxFlex="30">
-    <gallery gallerize id="gallerize-ex" [items]="images" thumbPosition="bottom"></gallery>
-  </div>
+  <section fxFlex="30">
+    <img  src="https://placeimg.com/640/480/animals"  style="width: 260px">
+    <img *ngFor="let pic of pics; let i=index" src="{{pic.src}}"  (click)="togglePic(i)" style="width: 64px">
+  </section>
 
   <div class="productDescription">
 
@@ -52,18 +53,22 @@
         <button mat-raised-button> Багц 2</button>
         <button mat-raised-button> Багц 3 </button>
       </div> -->
-      <span>Хятад улс доторх тээвэр: {{ cost }} ₮</span>
+      <span value="cost">Хятад улс доторх тээвэр: {{ cost }} ₮</span>
       <div>
         <span>
-          Тоо хэмжээ <input  type="number"> ширхэгийн, нийт үнэ {{ costs }}
+          Тоо хэмжээ
+          <mat-form-field style="width: 40px;">
+            <input matInput value="1" type="number"
+            min="1">
+          </mat-form-field> ширхэг, Нийт үнэ {{costs}}
         </span>
       </div>
-      <button mat-raised-button>
+      <button mat-raised-button (click)="cardSnackBar()">
         <mat-icon>add_shopping_cart</mat-icon> Сагсанд нэмэх
       </button>
       <hr>
       <div>
-        <button mat-raised-button routerLink="/">
+        <button mat-raised-button (click)="likeSnackBar()">
           <mat-icon>thumb_up</mat-icon> Таалагдсан бараанд нэмэх
         </button>
         <button mat-raised-button routerLink="/">Захиалах заавар үзэх</button>

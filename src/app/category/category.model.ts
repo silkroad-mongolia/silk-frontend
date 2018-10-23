@@ -1,4 +1,10 @@
 class CategoryModel {
   name: string;
-  subCategories: string[];
+  subCategories: SubCategoryModel[];
+}
+
+
+class SubCategoryModel {
+  name: string;
+  link: string;
 }

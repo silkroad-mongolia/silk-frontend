@@ -8,14 +8,13 @@ import {
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  subCategoryVisible = false;
   subCategories: string[] = [];
   categories: CategoryModel[] = [
-    {name: 'Bags', subCategories: ['tom tsunh', 'suragch tssunh']},
-    {name: 'Woman Dress', subCategories: ['zunii daashilz', 'hurimiin daashiinj']},
-    {name: 'Bags', subCategories: ['tom tsunh', 'suragch tssunh']},
-    {name: 'Bags', subCategories: ['tom tsunh', 'suragch tssunh']},
-    {name: 'Bags', subCategories: ['tom tsunh', 'suragch tssunh']},
+    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
+    {name: 'Woman Dress', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
+    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
+    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
+    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
   ];
 
   imageUrls: (string | SlideModel)[] = [{
@@ -53,14 +52,7 @@ export class CategoryComponent implements OnInit {
   constructor() { }
 
   toggleCategory(index: number) {
-    // this.subCategoryVisible = true;
-    this.subCategories = this.categories[index].subCategories;
-
-    // if (this.subCategory === false) {
-    //     this.subCategory = true;
-    // } else {
-    //   this.subCategory = false;
-    // }
+    // this.subCategories = this.categories[index].subCategories;
   }
 
   // hideCategory() {

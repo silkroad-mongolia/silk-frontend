@@ -20,7 +20,9 @@ import {
     MatTabsModule,
     MatTooltipModule,
     MatButtonToggleModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule,
+    MatProgressBarModule
   } from '@angular/material';
   import {NgModule} from '@angular/core';
 
@@ -47,7 +49,9 @@ import {
       MatTabsModule,
       MatButtonToggleModule,
       MatTooltipModule,
-      MatRadioModule
+      MatRadioModule,
+      MatSnackBarModule,
+      MatProgressBarModule
     ],
   })
 
