@@ -22,7 +22,8 @@ import {
     MatButtonToggleModule,
     MatRadioModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTableModule
   } from '@angular/material';
   import {NgModule} from '@angular/core';
 
@@ -30,6 +31,7 @@ import {
     exports: [
       MatButtonModule,
       MatCheckboxModule,
+      MatTableModule,
       MatInputModule,
       MatCardModule,
       MatToolbarModule,

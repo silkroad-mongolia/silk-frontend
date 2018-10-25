@@ -7,7 +7,19 @@ a {
   background: white;
 
 }
-
+.bigImage{
+  width:384px;
+  border-radius: 8%;
+}
+.miniImage {
+  width: 64px;
+  border-radius: 8%;
+}
+.miniImage:active {
+ border: 1px;
+ border-color: greenyellow;
+ background-color: greenyellow;
+}
 
 mat-icon, button, .productDescription {
   font-size: 13px;

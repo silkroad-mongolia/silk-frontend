@@ -9,6 +9,8 @@ import { ProductPaymentComponent } from './product-payment/product-payment.compo
 import { CalculatorComponent } from './calculator/calculator.component';
 import { ProductsComponent } from './products/products.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PrivateofficeComponent } from './privateoffice/privateoffice.component';
+import { ProductorderComponent } from './productorder/productorder.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path: 'payment', component: ProductPaymentComponent},
   {path: 'calculator', component: CalculatorComponent},
   {path: 'products', component: ProductsComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'profile/general', component: PrivateofficeComponent},
+  {path: 'profile/order', component: ProductorderComponent}
 ];
 
 @NgModule({

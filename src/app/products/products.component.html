@@ -41,12 +41,13 @@
       <button mat-button>Цэвэрлэх</button>
       </div>
 
-      <mat-grid-list cols="6" rowHeight="1:2">
+      <mat-grid-list cols="4">
         <mat-grid-tile *ngFor="let product of porducts">
-          <div fxLayout="column">
+          <mat-card>
+              <div fxLayout="column">
             <div>
               <a routerLink="/product">
-                <img src="{{product.src}}" alt="image" style="width: 150px">
+                <img src="{{product.src}}" alt="image">
               </a>
             </div>
             <div>
@@ -57,12 +58,11 @@
               </h5>
               <h5  routerLink="/product"> une {{product.price}}</h5>
             </div>
-
           </div>
-
+          </mat-card>
+          <br>
         </mat-grid-tile>
       </mat-grid-list>
-
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>

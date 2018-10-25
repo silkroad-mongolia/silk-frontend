@@ -11,6 +11,7 @@ import {MatSnackBar} from '@angular/material';
 })
 
 export class ProductComponent implements OnInit {
+  bigPic: string;
   colors = [
     {src: 'https://placeimg.com/640/480/animals', colorvalue: 'red'  },
     {src: 'https://placeimg.com/640/480/animals', colorvalue: 'green'},
@@ -20,12 +21,13 @@ export class ProductComponent implements OnInit {
     {src: 'https://placeimg.com/640/480/animals', colorvalue: 'black'  }];
   pics = [
     {src: 'https://placeimg.com/640/480/animals', datasrc: 'https://placeimg.com/640/480/animals'},
-    {src: 'https://placeimg.com/640/480/animals', datasrc: 'https://placeimg.com/640/480/animals'},
-    {src: 'https://placeimg.com/640/480/animals', datasrc: 'https://placeimg.com/640/480/animals'},
-    {src: 'https://placeimg.com/640/480/animals', datasrc: 'https://placeimg.com/640/480/animals'},
-    {src: 'https://placeimg.com/640/480/animals', datasrc: 'https://placeimg.com/640/480/animals'},
+    {src: 'https://placeimg.com/640/480/architechture', datasrc: 'https://placeimg.com/640/480/architechture'},
+    {src: 'https://placeimg.com/640/480/nature', datasrc: 'https://placeimg.com/640/480/nature'},
+    {src: 'https://placeimg.com/640/480/people', datasrc: 'https://placeimg.com/640/480/people'},
+    {src: 'https://placeimg.com/640/480/tech', datasrc: 'https://placeimg.com/640/480/tech'},
     {src: 'https://placeimg.com/640/480/animals', datasrc: 'https://placeimg.com/640/480/animals'}
   ];
+  sizes = [ 'M;', 'L;', 'XL;', '2XL;', '3XL;', '4XL;'];
   store = 429;
   brand: '';
   colorname: '';
@@ -37,7 +39,9 @@ export class ProductComponent implements OnInit {
   constructor(public snackBar: MatSnackBar) {}
 
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.bigPic = this.pics[0].src;
+   }
 
 
   cardSnackBar() {
@@ -51,7 +55,7 @@ export class ProductComponent implements OnInit {
     });
   }
   togglePic(index: number) {
-    // this.src = this.pics[index];
+    this.bigPic = this.pics[index].src;
      // this.subCategoryVisible = true;
      // if (this.subCategory === false) {
     //     this.subCategory = true;
