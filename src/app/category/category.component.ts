@@ -8,7 +8,7 @@ import {
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  subCategories: string[] = [];
+  subCategories: SubCategoryModel[] = [];
   categories: CategoryModel[] = [
     {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
     {name: 'Woman Dress', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
@@ -52,7 +52,7 @@ export class CategoryComponent implements OnInit {
   constructor() { }
 
   toggleCategory(index: number) {
-    // this.subCategories = this.categories[index].subCategories;
+    this.subCategories = this.categories[index].subCategories;
   }
 
   // hideCategory() {

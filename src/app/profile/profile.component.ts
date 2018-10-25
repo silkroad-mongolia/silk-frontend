@@ -11,10 +11,11 @@ import {AuthService} from '../auth/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  cities = ['ub', 'darhan', 'erdenet'];
   profiles = [
-    {name: 'profile', value: 'profile'},
-    {name: 'yurunhii medeelel'},
-    {name: 'Bags'},
+    {name: 'profile', link: '/profile'},
+    {name: 'yurunhii medeelel', link: '/profile/general'},
+    {name: 'Миний захиалгууд', link: '/profile/order'},
   ];
   constructor(private fb: FormBuilder, public authService: AuthService) {  }
 
@@ -26,6 +27,9 @@ export class ProfileComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern('')]],
       password1: ['', [Validators.required, Validators.pattern('')]],
+      addr3: ['', [Validators.required]],
+      addr4: ['', [Validators.required]],
+      addr5: ['', [Validators.required]],
       phone: ['', Validators.required],
       sex: ['', Validators.required],
     });
@@ -53,6 +57,15 @@ export class ProfileComponent implements OnInit {
   }
   get sex() {
     return this.changeForm.get('sex');
+  }
+  get addr3() {
+    return this.changeForm.get('addr3');
+  }
+  get addr4() {
+    return this.changeForm.get('addr4');
+  }
+  get addr5() {
+    return this.changeForm.get('addr5');
   }
 
   save() {

@@ -1,16 +1,16 @@
 <div class="tab" fxLayout="column" fxFlex="20">
-  <button mat-button *ngFor="let profile of profiles; let i = index">{{profile.name}}</button>
+  <button mat-button *ngFor="let profile of profiles; let i = index" routerLink="{{profile.link}}">{{profile.name}}</button>
 </div>
-  <mat-tab-group mat-align-tabs="end" fxFlex="60">
-  <mat-tab label="First" fxLayout="row">
+<mat-tab-group mat-align-tabs="end" fxFlex="80">
+  <mat-tab label="Хувийн мэдээлэл" fxLayout="row">
     <br>
     <mat-card>
       <h3>Профайл зураг</h3>
       <div fxLayout="row">
-         <img src="http://icons.iconarchive.com/icons/goescat/macaron/icons-390.jpg" class="profile-img">
-      <div>
-        <button mat-button style="background-color: blue">change img</button>
-      </div>
+        <img src="http://icons.iconarchive.com/icons/goescat/macaron/icons-390.jpg" class="profile-img">
+        <div>
+          <button mat-button style="background-color: blue">change img</button>
+        </div>
       </div>
 
     </mat-card>
@@ -52,7 +52,7 @@
     </mat-card>
     <br>
   </mat-tab>
-  <mat-tab label="Second">
+  <mat-tab label="И-мэйл хаяг, Нууц үг өөрчлөх">
     <br>
     <mat-card fxLayout="row">
       <form [formGroup]="changeForm">
@@ -89,7 +89,57 @@
     </mat-card>
     <br>
   </mat-tab>
-  <mat-tab label="Third">
+  <mat-tab label="Хүргэлтийн мэдээлэл">
+    <form [formGroup]="changeForm">
+      <br>
+      <mat-card>
+        <div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field>
+              <mat-select placeholder="Хот / аймаг*:">
+                <mat-option value="city" *ngFor="let city of cities">{{city}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="addr3" placeholder="Дүүрэг / Сум:*">
+              <mat-error *ngIf="addr3.invalid && addr3.touched">
+                "Дүүрэг / Сум дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+
+            <mat-form-field>
+              <input matInput formControlName="addr4" placeholder="Хороо / баг*:" type="string">
+              <mat-error *ngIf="addr4.invalid && addr4.touched">
+                Хороо / баг дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field>
+              <input matInput formControlName="addr5" placeholder="Хаяг (байр, орц, тоот, орцны код)*:">
+              <mat-error *ngIf="addr5.invalid && addr5.touched">
+                Хаяг дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="phone" placeholder="Утас*:">
+              <mat-error *ngIf="phone.invalid && phone.touched">
+                Утас дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <button mat-raised-button color="primary">save</button>
+      </mat-card>
+      <br>
+    </form>
+  </mat-tab>
+  <mat-tab label="Хэрэглэгчийн хаягаа устгах">
     <form [formGroup]="changeForm">
       <br>
       <mat-card>

@@ -24,6 +24,10 @@ import {AuthInterceptor} from './auth/auth-interceptor';
 import { CategoryComponent } from './category/category.component';
 import { ProductsComponent } from './products/products.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PrivateofficeComponent } from './privateoffice/privateoffice.component';
+import { ProductorderComponent } from './productorder/productorder.component';
+import { NgxImgZoomModule } from 'ngx-img-zoom';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +44,9 @@ import { ProfileComponent } from './profile/profile.component';
     CalculatorComponent,
     CategoryComponent,
     ProductsComponent,
-    ProfileComponent
+    ProfileComponent,
+    PrivateofficeComponent,
+    ProductorderComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,8 @@ import { ProfileComponent } from './profile/profile.component';
     SlideshowModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxImgZoomModule
 
   ],
   providers: [
