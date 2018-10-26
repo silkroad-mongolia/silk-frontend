@@ -1,48 +1,47 @@
 <div fxLayout="row" fxLayoutAlign="space-between start">
   <div fxFlex="35">
-    <img *ngFor="let pic of pics; let i=index" [src]="pic.src" (mouseenter)="togglePic(i)" class="miniImage">
-    <ngx-img-zoom
-    [imgSrc]="bigPic"
-    [imgStyle]="'width:383px; height:363px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px  #dcdcdc; border-radius: 4%;'"
-    [resultStyle]="'width:363px; height:363px; background-repeat: no-repeat; z-index: 2; position:absolute;
+    <img *ngFor="let image of product.images; let i=index" [src]="image.small" (mouseenter)="togglePic(i)" class="miniImage">
+    <ngx-img-zoom [imgSrc]="bigPic" [imgStyle]="'width:383px; height:363px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px  #dcdcdc; border-radius: 4%;'"
+      [resultStyle]="'width:363px; height:363px; background-repeat: no-repeat; z-index: 2; position:absolute;
                   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); top: 0;left: 100%;'"
-    [lensStyle]="'width:100px; height:100px'"
-    class="bigImage"
-    [containerStyle]="'width:400px; height:400px'"
-  ></ngx-img-zoom>
+      [lensStyle]="'width:100px; height:100px'" [containerStyle]="'width:400px; height:400px;'"></ngx-img-zoom>
   </div>
+
+
   <br>
   <br>
   <div class="productDescription" fxFlex="63" fxLayoutAlign="space-between start">
 
     <div fxFlex="58">
       <div>
-        <span>Спорт костюм эрэгтэй цамц нэхэмжлэл хавар, намрын чөл</span>
+        <span>{{product.main_title}}</span>
       </div>
       <mat-card class="costmat" fxLayoutAlign="center center">
         <!-- <span type="number"> {{ realcost }} ₮</span> -->
-        <h2>{{ cost }} ₮</h2>
+        <h2 #changePrice>{{ product.price_regular }} ₮</h2>
       </mat-card>
 
       <div>
         <div>
-          <span> last 30 days: {{ unit }} ширхэг <button mat-icon-button matTooltip="Уг бараа нь бэлэн">
+          <span> last 30 days: {{ product.cumm_comments }} ширхэг <button mat-icon-button matTooltip="Уг бараа нь бэлэн">
               <mat-icon>help</mat-icon>
             </button> </span>
-          <span> Нөөц: {{ store }} ширхэг
+          <span> Нөөц: {{ product.stock }} ширхэг
             <button mat-icon-button matTooltip="Уг бараа нь бэлэн">
               <mat-icon>help</mat-icon>
             </button></span>
-          <span>Онцлог: {{ brand }}<button mat-icon-button matTooltip="Уг бараа нь бэлэн">
+          <!-- <span>Онцлог: {{ brand }}<button mat-icon-button matTooltip="Уг бараа нь бэлэн">
               <mat-icon>help</mat-icon>
-            </button></span>
+            </button></span> -->
         </div>
         <hr>
         <div fxLayoutAlign="space-between none">
           <div>
             <span>Хэмжээ:</span>
-            <button mat-button *ngFor="let size of sizes" style="background-color: rgb(96, 96, 248)">{{size}}</button>
+            <mat-chip-list>
+              <mat-chip *ngFor="let size of product.sizes; let i=index" style="width: 50px" [id]="size.id"  >{{size.name}}</mat-chip>
+            </mat-chip-list>
 
           </div>
           <a routerLink="/">Хэрхэн размер сонгох вэ?</a>
@@ -51,11 +50,13 @@
         <div>
           <span>Өнгө: </span>
           <br>
-          <mat-button-toggle-group name="colors">
-            <mat-button-toggle *ngFor="let color of colors" value="{{color.colorvalue}}">
-              <img src="{{color.src}}" style="width: 50%">
-            </mat-button-toggle>
-          </mat-button-toggle-group>
+          <mat-chip-list>
+            <mat-chip *ngFor="let color of product.colors" style="width: 60px; border-radius: 9%;">{{color.name}}</mat-chip>
+          </mat-chip-list>
+          <div>
+            <img class="imgColors" *ngFor="let color of colors" src="{{color.src}}" style="width: 60px; border-radius: 50%;">
+          </div>
+
         </div>
 
       </div>
@@ -67,13 +68,13 @@
         <button mat-raised-button> Багц 2</button>
         <button mat-raised-button> Багц 3 </button>
       </div> -->
-      <span value="cost">Хятад улс доторх тээвэр: {{ cost }} ₮</span>
+      <!-- <span value="cost">Хятад улс доторх тээвэр: {{ cost }} ₮</span> -->
       <div>
         <span>
           Тоо хэмжээ
           <mat-form-field style="width: 40px;">
-            <input matInput value="1" type="number" min="1">
-          </mat-form-field> ширхэг, Нийт үнэ {{costs}}
+            <input matInput value="1" type="number" min="1" #changePrice>
+          </mat-form-field> ширхэг, Нийт үнэ {{product.price_regular}}
         </span>
       </div>
       <button mat-raised-button (click)="cardSnackBar()">
@@ -119,41 +120,20 @@
 <div>
   <mat-tab-group>
     <mat-tab label="Зурган тайлбар">
-      <div fxFlex="60"></div>
-      <div fxFlex="40">
-        <h2>Барааны мэдээлэл</h2>
-        <br>
-        <hr>
-        <div fxLayoutAlign="space-between start">
-          <span>Өнгө:</span>
-          <span fxFlex="50">Хар хөх; Wine улаан; Хар; Саарал, хар саарал; Хар хөх нэмэх хилэн; Wine улаан нэмэх хилэн;
-            Хар хилэн; Саарал, хар саарал хилэн;</span>
+      <div fxLayout="row" fxLayoutAlign="space-around start">
+        <div fxFlex="70">
+          <img *ngFor="let description_image of product.description_images" src="{{description_image}}">
         </div>
-        <hr>
-        <div fxLayoutAlign="space-between start">
-          <span>Зах зээлд гарах цаг:</span>
-          <span> 2018 оны намар;</span>
+        <div fxFlex="25">
+          <div *ngFor="let attribute of product.attributes">{{attribute}}</div>
         </div>
-        <hr>
-        <div fxLayoutAlign="space-between start">
-          <span>Топ загвар: </span>
-          <span> Ханцуйвч</span>
-        </div>
-        <hr>
-        <div fxLayoutAlign="space-between start">
-          <span>Хэмжээ:</span>
-          <span> M; L; XL; 2XL; 3XL; 4XL;</span>
-        </div>
-        <hr>
-        <div fxLayoutAlign="space-between start">
-          <span>Хэмжээ:</span>
-          <span> M; L; XL; 2XL; 3XL; 4XL;</span>
-        </div>
-        <hr>
       </div>
+
     </mat-tab>
     <mat-tab label=" Ижил төстэй бараанууд"> Ижил төстэй бараанууд </mat-tab>
     <mat-tab label=" Яг адилхан бараанууд"> Яг адилхан бараанууд </mat-tab>
     <mat-tab label="Хятад худалдан авагчдын сэтгэгдэл"> Хятад худалдан авагчдын сэтгэгдэл </mat-tab>
   </mat-tab-group>
 </div>
+
+

@@ -7,19 +7,15 @@ a {
   background: white;
 
 }
-.bigImage{
-  width:384px;
-  border-radius: 8%;
-}
 .miniImage {
-  width: 64px;
+  width: 30px;
   border-radius: 8%;
 }
-.miniImage:active {
- border: 1px;
- border-color: greenyellow;
- background-color: greenyellow;
-}
+// .miniImage:hover {
+//  border: 1px;
+//  border-style: solid;
+//  background-color: greenyellow;
+// }
 
 mat-icon, button, .productDescription {
   font-size: 13px;
@@ -28,5 +24,7 @@ mat-icon, button, .productDescription {
   background-image: url('/src/assets/image/background.jpg');
   font-size: 20px;
 }
-
+// .imgColors:hover {
+//   border-style: solid;
+// }
 
