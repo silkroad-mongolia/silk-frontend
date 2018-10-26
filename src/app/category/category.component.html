@@ -1,7 +1,9 @@
 <div>
   <div fxFlex="25" class="category">
     <div class="tab">
-      <button *ngFor="let category of categories; let i = index" (mouseover)="toggleCategory(i)">{{category.name}}</button>
+      <button mat-button  *ngFor="let category of categories; let i = index"
+      (mouseover)="toggleCategory(i)"
+      style="border-radius: 8%">{{category.name}}</button>
     </div>
     <div class="categories">
       <h4 *ngFor="let subCategory of subCategories">{{subCategory}}</h4>

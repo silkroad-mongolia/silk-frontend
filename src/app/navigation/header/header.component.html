@@ -1,30 +1,41 @@
-<mat-toolbar color="primary">
+<mat-toolbar-row fxLayoutAlign="end end">
   <div>
+    <a routerLink="/">Заавар</a>
+    <mat-icon>call</mat-icon>
+    <span fxFlex="60">98434955</span>
+  </div>
+
+</mat-toolbar-row>
+<mat-toolbar>
+  <!-- <div>
     <button mat-icon-button (click)="onToggleSideNav()">
       <mat-icon>menu</mat-icon>
     </button>
-  </div>
-  <a routerLink="/"><img src="assets/image/logo.jpg" routerLink="/" height="50" width="180"></a>
-  <div fxFlex></div>
-
-
-  <div>
-    <input type="text" name="search" (keyup.enter)="search()" (click)=search()>
-    <button mat-icon-button>
-      <mat-icon>search</mat-icon>
-    </button>
-    <span id="searchBtn" (click)="search()">
-    </span>
-  </div>
-  <div fxFlex></div>
-  <div fxLayout="row" class="callnumber">
-    <mat-icon class="callnumbericon">call</mat-icon>
-    <div fxLayout="column">
-      <span fxFlex="60">98434955</span>
-      <span>Да - Ба 9:00-18:00</span>
+  </div> -->
+  <div fxFlex="80">
+    <a routerLink="/"><img src="assets/image/logo.jpg" routerLink="/" height="50" width="180"></a>
+    <div fxFlex>
+      <button mat-button class="frontButton">
+        Нүүр
+      </button>
     </div>
-
+    <div>
+      <input style="background-color: tan" type="text" name="search" (keyup.enter)="search()" (click)=search()>
+      <button mat-icon-button matSuffix>
+        <mat-icon style="color: black;">search</mat-icon>
+      </button>
+      <span id="searchBtn" (click)="search()">
+      </span>
+    </div>
   </div>
+
+  <div fxFlex style="color: white; "></div>
+  <button mat-button>
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+  <button mat-button>
+    <mat-icon>favorite_border</mat-icon>
+  </button>
   <button mat-button [matMenuTriggerFor]="menu">
     <mat-icon>account_circle</mat-icon>
   </button>

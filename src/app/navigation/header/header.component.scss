@@ -3,6 +3,11 @@ ul {
     padding: 0;
     margin: 0;
   }
+  .frontButton{
+    background-color: goldenrod;
+    height: 45px;
+    width:  100px;
+      }
 
   a {
     text-decoration: none;
@@ -10,9 +15,9 @@ ul {
   input {
     width: 600px;
     margin: .5rem 0;
-    padding: .5rem;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid black;
 }
 .callnumbericon {
    margin: .5rem 0;
@@ -23,5 +28,8 @@ ul {
 
 }
 mat-toolbar {
- height: 100px;
+ height: auto;
+}
+mat-toolbar-row {
+  height: auto;
 }
