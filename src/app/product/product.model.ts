@@ -20,6 +20,7 @@ export class SizesEntity {
 export class ColorsEntity {
   name: string;
   id: string;
+  image: string;
 }
 export class ImagesEntity {
   small: string;

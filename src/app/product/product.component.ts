@@ -16,6 +16,7 @@ import {
 
 export class ProductComponent implements OnInit {
   bigPic: string;
+  selectedImageIndex: number;
   colors = [{
       src: 'https://placeimg.com/640/480/animals',
       colorvalue: 'red'
@@ -160,11 +161,13 @@ export class ProductComponent implements OnInit {
       colors: [
         {
           name: 'Хар',
-          id: '1627207:28341'
+          id: '1627207:28341',
+          image: '',
         },
         {
           name: 'Улаан',
-          id: '1627207:28326'
+          id: '1627207:28326',
+          image: '',
         }
       ],
       images: [{
@@ -252,14 +255,18 @@ export class ProductComponent implements OnInit {
       duration: 3000
     });
   }
+
   likeSnackBar() {
     this.snackBar.open('Таалагдсан бараанд орсон', 'Done', {
       duration: 3000
     });
   }
+
   togglePic(index: number) {
     this.bigPic = this.product.images[index].big;
+    this.selectedImageIndex = index;
   }
+
   changePrice() {
 
   }

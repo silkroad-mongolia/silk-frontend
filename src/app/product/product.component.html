@@ -1,7 +1,22 @@
 <div fxLayout="row" fxLayoutAlign="space-between start">
   <div fxFlex="35">
-    <img *ngFor="let image of product.images; let i=index" [src]="image.small" (mouseenter)="togglePic(i)" class="miniImage">
-    <ngx-img-zoom [imgSrc]="bigPic" [imgStyle]="'width:383px; height:363px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px  #dcdcdc; border-radius: 4%;'"
+
+    <div *ngFor="let image of product.images; let i=index">
+      <div *ngIf="selectedImageIndex === i" class="selectedImage">
+        <img [src]="image.small" (mouseenter)="togglePic(i)" class="miniImage" >
+      </div>
+      <div *ngIf="selectedImageIndex !== i">
+        <img [src]="image.small" (mouseenter)="togglePic(i)" class="miniImage">
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <ngx-img-zoom [imgSrc]="bigPic" [imgStyle]="'width:383px; height:363px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px  #dcdcdc;'"
       [resultStyle]="'width:363px; height:363px; background-repeat: no-repeat; z-index: 2; position:absolute;
                   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); top: 0;left: 100%;'"
