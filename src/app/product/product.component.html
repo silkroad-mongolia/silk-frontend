@@ -34,7 +34,7 @@
       </div>
       <mat-card class="costmat" fxLayoutAlign="center center">
         <!-- <span type="number"> {{ realcost }} ₮</span> -->
-        <h2 #changePrice>{{ product.price_regular }} ₮</h2>
+        <h2>{{ product.price_regular }} ₮</h2>
       </mat-card>
 
       <div>
@@ -55,7 +55,7 @@
           <div>
             <span>Хэмжээ:</span>
             <mat-chip-list>
-              <mat-chip *ngFor="let size of product.sizes; let i=index" style="width: 50px" [id]="size.id"  >{{size.name}}</mat-chip>
+              <mat-chip *ngFor="let size of product.sizes; let i=index" style="width: 50px" (click)="sizeChange(size.id)">{{size.name}}</mat-chip>
             </mat-chip-list>
 
           </div>
@@ -66,10 +66,13 @@
           <span>Өнгө: </span>
           <br>
           <mat-chip-list>
-            <mat-chip *ngFor="let color of product.colors" style="width: 60px; border-radius: 9%;">{{color.name}}</mat-chip>
+            <span *ngFor="let color of product.colors">
+              <img *ngIf="color.image" class="imgColors" [src]="color.src" style="width: 60px; border-radius: 50%;" (click)="colorChange(color.id)">
+              <mat-chip *ngIf="!color.image" style="width: 60px; border-radius: 9%;" (click)="colorChange(color.id)">{{color.name}}</mat-chip>
+            </span>
           </mat-chip-list>
           <div>
-            <img class="imgColors" *ngFor="let color of colors" src="{{color.src}}" style="width: 60px; border-radius: 50%;">
+
           </div>
 
         </div>
@@ -88,7 +91,7 @@
         <span>
           Тоо хэмжээ
           <mat-form-field style="width: 40px;">
-            <input matInput value="1" type="number" min="1" #changePrice>
+            <input matInput value="1" type="number" min="1">
           </mat-form-field> ширхэг, Нийт үнэ {{product.price_regular}}
         </span>
       </div>

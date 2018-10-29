@@ -17,31 +17,9 @@ import {
 export class ProductComponent implements OnInit {
   bigPic: string;
   selectedImageIndex: number;
-  colors = [{
-      src: 'https://placeimg.com/640/480/animals',
-      colorvalue: 'red'
-    },
-    {
-      src: 'https://placeimg.com/640/480/animals',
-      colorvalue: 'green'
-    },
-    {
-      src: 'https://placeimg.com/640/480/animals',
-      colorvalue: 'black'
-    },
-    {
-      src: 'https://placeimg.com/640/480/animals',
-      colorvalue: 'red'
-    },
-    {
-      src: 'https://placeimg.com/640/480/animals',
-      colorvalue: 'green'
-    },
-    {
-      src: 'https://placeimg.com/640/480/animals',
-      colorvalue: 'black'
-    }
-  ];
+  color_id: string;
+  size_id: string;
+
   pics = [{
       src: 'https://placeimg.com/640/480/animals',
       datasrc: 'https://placeimg.com/640/480/animals'
@@ -196,49 +174,49 @@ export class ProductComponent implements OnInit {
         }
       ],
       sku: {
-        '20509:28316;1627207:28341': {
+        ';20509:28316;1627207:28341;': {
           price: '39900.00',
-         stock: '2',
+          stock: '2',
           skuId: '3739270998343',
           oversold: false
         },
-        '20509:28315;1627207:28341': {
+        ';20509:28315;1627207:28341;': {
           price: '3990.00',
           stock: '2',
           skuId: '3739270998342',
           oversold: false
         },
-        '20509:6145171;1627207:28341': {
+        ';20509:6145171;1627207:28341;': {
           price: '3992.00',
           stock: '2',
           skuId: '3739270998345',
           oversold: false
         },
-        '20509:28317;1627207:28341': {
+        ';20509:28317;1627207:28341;': {
           price: '399.00',
           stock: '2',
           skuId: '3739270998344',
           oversold: false
         },
-        '20509:6145171;1627207:28326': {
+        ';20509:6145171;1627207:28326;': {
           price: '3991.00',
           stock: '2',
           skuId: '3863882476943',
           oversold: false
         },
-        '20509:28316;1627207:28326': {
+        ';20509:28316;1627207:28326;': {
           price: '3992.00',
           stock: '2',
           skuId: '3863882476941',
           oversold: false
         },
-        '20509:28315;1627207:28326': {
+        ';20509:28315;1627207:28326;': {
           price: '3993.00',
           stock: '2',
           skuId: '3863882476940',
           oversold: false
         },
-        '20509:28317;1627207:28326': {
+        ';20509:28317;1627207:28326;': {
           price: '3994.00',
           stock: '2',
           skuId: '3863882476942',
@@ -249,6 +227,26 @@ export class ProductComponent implements OnInit {
     this.bigPic = this.product.images[0].big;
   }
 
+
+  sizeChange(size_id) {
+    this.size_id = size_id;
+    const key = ';' + this.size_id + ';' + this.color_id + ';';
+    console.log('size id:', size_id);
+    if (this.product.sku[key]) {
+      this.product.price_regular = this.product.sku[key].price;
+    }
+  }
+
+  colorChange(color_id) {
+    this.color_id = color_id;
+    const key = ';' + this.size_id + ';' + this.color_id + ';';
+    console.log('color id:', color_id);
+    console.log(key);
+    if (this.product.sku[key]) {
+      console.log('here');
+      this.product.price_regular = this.product.sku[key].price;
+    }
+  }
 
   cardSnackBar() {
     this.snackBar.open('Сагсанд орсон', 'Done', {
