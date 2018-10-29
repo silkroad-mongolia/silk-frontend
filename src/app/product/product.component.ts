@@ -173,6 +173,21 @@ export class ProductComponent implements OnInit {
           big: 'https://img.alicdn.com/imgextra/i3/1809641154/TB2BvRbzWSWBuNjSsrbXXa0mVXa_!!1809641154.jpg_400x400.jpg'
         }
       ],
+      // "store": {
+      //   "name": "掌柜:卢百万103",
+      //   "cover_image": "//gtms01.alicdn.com/tps/i1/TB1zIlNFVXXXXXtXpXXxwHxIVXX-198-60.png",
+      //   "star_count": "5",
+      //   "star_image": "rgba(0, 0, 0, 0) -webkit-image-set(url(\"https://gtms03.alicdn.com/tps/i4/TB17JRyFVXXXXXhXpXXxPfUFXXX-16-16.gif\") 1x, url(\"https://gtms03.alicdn.com/tps/i1/TB1oTVxFVXXXXXyXpXXBStGGXXX-32-32.gif\") 2x) no-repeat scroll 0px 0px / auto padding-box border-box",
+      //   "gold_seller_image": "true",
+      //   "gold_continuous_image": "true",
+      //   "description": "4.7",
+      //   "service": "4.7",
+      //   "logistics": "4.7",
+      //   "store_link": "//lubaiwan.taobao.com",
+      //   "ratings_link": "//rate.taobao.com/user-rate-c9841f6e2aec2340f693529aa24fbce8.htm",
+      //   "shopkeeper": "卢百万103",
+      //   "qualification": "10888元"
+      // },
       sku: {
         ';20509:28316;1627207:28341;': {
           price: '39900.00',
