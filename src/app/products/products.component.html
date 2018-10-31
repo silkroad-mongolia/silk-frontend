@@ -1,0 +1,116 @@
+
+  <!-- <div fxFlex="20" class="activeFilter">
+    <h4> Шүүлтүүрүүд</h4>
+    <mat-expansion-panel *ngFor="let activeFilter of activeFilters" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{activeFilter.name}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-checkbox *ngFor="let filter of activeFilter.filters" [value]="filter"> {{filter}}</mat-checkbox>
+    </mat-expansion-panel>
+  </div> -->
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+        Taobao.com бараанууд
+      </ng-template>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+          <a>Нийт бараа: {{categories}}</a>
+      <a>Харуулж буй: {{categories}}</a>
+      <mat-form-field>
+        <mat-select placeholder="Эрэмблэх">
+          <mat-option *ngFor="let sort of sorts" [value]="sort.value">
+            {{sort.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+          <mat-form-field>
+              <input matInput placeholder="00 " type="number" class="example-right-align">
+              <span matPrefix>Доод&nbsp;</span>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="00 " type="number" class="example-right-align">
+                <span matPrefix>Дээд&nbsp;</span>
+                <span matSuffix>₮ үнэ </span>
+              </mat-form-field>
+      </div>
+      <button mat-button>Хайх</button>
+      <button mat-button>Цэвэрлэх</button>
+      </div>
+
+      <mat-grid-list cols="4">
+        <mat-grid-tile *ngFor="let product of porducts">
+          <mat-card>
+              <div fxLayout="column">
+            <div>
+              <a routerLink="/product">
+                <img src="{{product.src}}" alt="image">
+              </a>
+            </div>
+            <div>
+              <h5>
+                <p>
+                  <small  routerLink="/product">{{product.name}}</small>
+                </p>
+              </h5>
+              <h5  routerLink="/product"> une {{product.price}}</h5>
+            </div>
+          </div>
+          </mat-card>
+          <br>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+        Хямдралтай бараанууд
+      </ng-template>
+      <span>Нийт бараа: {{categories}} </span>
+      <span>Харуулж буй: {{categories}} </span>
+      <mat-form-field>
+        <mat-select placeholder="Эрэмблэх">
+          <mat-option *ngFor="let sort of sorts" [value]="sort.value">
+            {{sort.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-grid-list cols="2" rowHeight="1:1,3">
+        <mat-grid-tile *ngFor="let product of porducts">
+          <div fxLayout="column">
+            <div>
+              <a routerLink="/">
+                <img src="{{product.src}}" alt="image" style="width: 150px">
+              </a>
+            </div>
+            <div>
+              <h5>
+                <a routerLink="/">{{product.title}}</a>
+                <p>
+                  <small>{{product.name}}</small>
+                </p>
+              </h5>
+            </div>
+            <div>
+              <h5> une {{product.price}}</h5>
+            </div>
+          </div>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </mat-tab>
+
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+        Бренд бараанууд
+      </ng-template>
+
+      Content 3
+    </mat-tab>
+  </mat-tab-group>

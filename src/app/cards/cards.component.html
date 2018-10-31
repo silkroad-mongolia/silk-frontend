@@ -1,0 +1,85 @@
+<section fxLayout="row">
+  <div>
+    <h2>Миний сагс</h2>
+    <div>
+      <button mat-raised-button>
+        <mat-icon>delete_forever</mat-icon>Чагталсан сонголтуудыг устгах
+      </button>
+      <button mat-raised-button>
+        <mat-icon>favorite</mat-icon>Таалагдсан бараандаа нэмэх
+      </button>
+      <button mat-raised-button>
+        <mat-icon>delete_forever</mat-icon>Сагсыг хоослох
+      </button>
+    </div>
+    <div>
+      <p>
+        <mat-card-header>
+          <Span>Дэлгүүрийн нэр: 八闽王子 </Span>
+        </mat-card-header>
+        <mat-card fxLayout="row">
+          <img src="{{ cardimage }}">
+          <div>
+            <span>Барааны код: {{productId}}</span>
+            <br>
+            <span>Хэмжээ: {{productSize}}</span>
+            <br>
+            <span>Өнгө: {{productColor}}</span>
+            <br>
+            <span>Дундаж жин: {{productWeight}}</span>
+            <br>
+
+            <span>Тоо хэмжээ: <input type="number"></span>
+          </div>
+          <div fxLayout="column">
+            <div>
+              <button mat-flat-button>
+                <mat-icon>track_changes</mat-icon>Сонголт уучлөх
+              </button>
+              <button mat-flat-button>
+                <mat-icon>favorite</mat-icon>Таалагдсан бараа
+              </button>
+              <button mat-flat-button>
+                <mat-icon>delete_forever</mat-icon>Устгах
+              </button>
+            </div>
+            <textarea name="text" id="text" cols="40" rows="10"></textarea>
+          </div>
+        </mat-card>
+      </p>
+    </div>
+    <div fxLayout="row">
+       <div>
+      <h3>Аюулгүй төлбөр тооцоо</h3>
+      <p>
+        Та өөрийн хувийн мэдээлэл болон мөнгөндөө санаа зовохгүй байж болно. Аюулгүй холболтын SSL шифрлэлт нь таны
+        мэдээллийн нууцлалыг найдвартай хангаж чадна.
+      </p>
+    </div>
+    <div >
+      <h3> Мөнгөө хэмнэ</h3>
+      <p>Бид тээврийн зардлыг хамгийн хямд, шуурхай байлгахыг хичээн ажилладаг. Манай БНХАУ дахь агуулахад таны бараа
+        ирсэн даруйд нь бид Монголруу шуурхай илгээдэг.</p>
+    </div>
+    <div>
+      <h3> Бидний туршлага</h3>
+      <p>Манай компаний ажилчид захиалга хүлээн авахаас эхлээд хэрэглэгчийн гар дээр очих хүртэл бүх шат дамжлагыг нэг
+        бүрчлэн сайтар хянаж, захиалга болгон дээр анхаарлаа хандуулдаг.</p>
+    </div>
+    </div>
+
+  </div>
+  <div>
+    <button mat-icon-button routerLink="/">
+      <mat-icon>help</mat-icon>хэрхэн төлбөр хийх вэ?
+    </button>
+    <br>
+    <br>
+    <br>
+    <mat-card>
+      <span>Нийт: {{ allcosts}} ₮</span>
+      <button mat-flat-button routerLink="/payment">Захиалга хийх({{ unit }})</button>
+    </mat-card>
+  </div>
+
+</section>

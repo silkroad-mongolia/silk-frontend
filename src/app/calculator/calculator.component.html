@@ -1,0 +1,57 @@
+<section>
+  <div fxLayout="row" fxLayoutAlign="space-around stretch">
+    <div fxFlex="40" style="height: 100%" >
+      <mat-card >
+        <mat-card-header>
+          <h3>
+            <mat-icon>all_inbox</mat-icon>
+            Жингээр тооцох
+          </h3>
+
+        </mat-card-header>
+        <hr>
+        <span>Хэрэв таны захиалсан барааны бодит жин 1 кг-с доош бол тээврийн зардал ҮНЭГҮЙ байх бөгөөд +1кг тутамд
+          1900₮ нэмэгдэнэ.</span>
+        <br>
+        <h6>Барааны жин: (кг)</h6> <input mat-raised-button type="number" value="{{catMass}}">
+        <hr>
+        <h6>Тээврийн зардал:</h6>
+        <mat-card>
+          {{costs}}
+        </mat-card>
+      </mat-card>
+    </div>
+    <div fxFlex="40"  style="height: 100%">
+      <mat-card>
+        <h3> Овор хэмжээгээр тооцох</h3>
+        <hr>
+        <div fxLayout="row">
+          <tr fxLayout="column" fxFlex="45">
+            <th>Урт: (см)</th>
+            <th>Өргөн: (см)</th>
+            <th>Өндөр: (см)</th>
+            <th>Өндөр: (м.куб)</th>
+            <th>Тээврийн зардал: (₮)</th>
+          </tr>
+          <tr fxLayout="column" class="example-full-width">
+            <th><input matInput id="long" onchange="calculate()" required></th>
+            <th><input matInput id="width" onchange="calculate()" required></th>
+            <th><input matInput id="height" onchange="calculate()" required></th>
+
+              <input type="text" onchange="calculate()" id="mcube" readonly>
+
+              <input type="text" onchange="calculate()" id="costs1" readonly>
+
+          </tr>
+        </div>
+      </mat-card>
+    </div>
+    <div fxFlex="40" >
+      <mat-card>
+          <h3> Барааг хэмжих арга</h3>
+          <hr>
+          <img style="width: 50" src="/src/assets/image/boxsize.png" >
+      </mat-card>
+    </div>
+  </div>
+</section>

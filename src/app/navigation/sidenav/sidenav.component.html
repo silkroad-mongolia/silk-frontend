@@ -1,0 +1,23 @@
+<mat-nav-list>
+  <div fxLayout >
+    <button mat-icon-button (click)="onClose()" >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a routerLink="/"><img src="assets/image/logo.jpg" height="50" width="200" (click)="onClose()"> </a>
+  </div>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/cards" (click)="onClose()">Сагс</a>
+  <a mat-list-item (click)="onClose()">
+    <mat-icon>apps</mat-icon>
+    View Badges
+  </a>
+  <a mat-list-item (click)="onClose()">
+    <mat-icon>add_circle</mat-icon>
+    Add Badge
+  </a>
+  <a mat-list-item (click)="onClose()">
+    <mat-icon>exposure_plus_1</mat-icon>
+    Assign Badge
+  </a>
+  <mat-divider></mat-divider>
+</mat-nav-list>

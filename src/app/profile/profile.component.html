@@ -1,0 +1,155 @@
+<div class="tab" fxLayout="column" fxFlex="20">
+  <button mat-button *ngFor="let profile of profiles; let i = index" routerLink="{{profile.link}}">{{profile.name}}</button>
+</div>
+<mat-tab-group mat-align-tabs="end" fxFlex="80">
+  <mat-tab label="Хувийн мэдээлэл" fxLayout="row">
+    <br>
+    <mat-card>
+      <h3>Профайл зураг</h3>
+      <div fxLayout="row">
+        <img src="http://icons.iconarchive.com/icons/goescat/macaron/icons-390.jpg" class="profile-img">
+        <div>
+          <button mat-button style="background-color: blue">change img</button>
+        </div>
+      </div>
+
+    </mat-card>
+    <br>
+    <mat-card>
+      <form [formGroup]="changeForm">
+        <h4>Хүлээн авагчийн мэдээлэл</h4>
+        <div fxLayout="row" fxLayoutAlign="space-around  center">
+          <mat-form-field>
+            <input matInput placeholder="Овог:" formControlName="firstname">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Нэр:" formControlName="lastname">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around  center">
+          <mat-form-field>
+            <input matInput formControlName="phone" placeholder="Утас:">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="sex" placeholder="Хүйс:">
+              <mat-option value="option1">Эрэгтэй</mat-option>
+              <mat-option value="option2">Эмэгтэй</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around  center">
+          <mat-form-field>
+            <input matInput placeholder="email" formControlName="email" type="email" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="password" name="password" formControlName="password" type="password" required
+              minlength="6">
+          </mat-form-field>
+        </div>
+        <br>
+        <button mat-raised-button color="primary" (click)="save()">save</button>
+      </form>
+    </mat-card>
+    <br>
+  </mat-tab>
+  <mat-tab label="И-мэйл хаяг, Нууц үг өөрчлөх">
+    <br>
+    <mat-card fxLayout="row">
+      <form [formGroup]="changeForm">
+        <div fxLayout="column" fxLayoutAlign="space-around  center">
+          <mat-form-field>
+            <input matInput placeholder="email" formControlName="email" type="email" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="password" name="password" formControlName="password" type="password" required
+              minlength="6">
+          </mat-form-field>
+          <button mat-raised-button color="primary">save</button>
+        </div>
+      </form>
+    </mat-card>
+    <br>
+    <mat-card>
+      <form [formGroup]="changeForm">
+        <div fxLayout="column" fxLayoutAlign="space-around  center">
+          <mat-form-field>
+            <input matInput placeholder="email" formControlName="email" type="email" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="password" name="password" formControlName="password" type="password" required
+              minlength="6">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="password" name="password1" formControlName="password1" type="password"
+              required minlength="6">
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary">save</button>
+      </form>
+    </mat-card>
+    <br>
+  </mat-tab>
+  <mat-tab label="Хүргэлтийн мэдээлэл">
+    <form [formGroup]="changeForm">
+      <br>
+      <mat-card>
+        <div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field>
+              <mat-select placeholder="Хот / аймаг*:">
+                <mat-option value="city" *ngFor="let city of cities">{{city}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="addr3" placeholder="Дүүрэг / Сум:*">
+              <mat-error *ngIf="addr3.invalid && addr3.touched">
+                "Дүүрэг / Сум дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+
+            <mat-form-field>
+              <input matInput formControlName="addr4" placeholder="Хороо / баг*:" type="string">
+              <mat-error *ngIf="addr4.invalid && addr4.touched">
+                Хороо / баг дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <mat-form-field>
+              <input matInput formControlName="addr5" placeholder="Хаяг (байр, орц, тоот, орцны код)*:">
+              <mat-error *ngIf="addr5.invalid && addr5.touched">
+                Хаяг дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName="phone" placeholder="Утас*:">
+              <mat-error *ngIf="phone.invalid && phone.touched">
+                Утас дутуу байна, гүйцэд бөглөнө үү!
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <button mat-raised-button color="primary">save</button>
+      </mat-card>
+      <br>
+    </form>
+  </mat-tab>
+  <mat-tab label="Хэрэглэгчийн хаягаа устгах">
+    <form [formGroup]="changeForm">
+      <br>
+      <mat-card>
+        <mat-form-field>
+          <input matInput placeholder="password" name="password" formControlName="password" type="password" required
+            minlength="6">
+        </mat-form-field>
+        <button mat-raised-button color="primary">delete</button>
+      </mat-card>
+      <br>
+    </form>
+  </mat-tab>
+</mat-tab-group>

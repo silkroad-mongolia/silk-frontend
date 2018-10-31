@@ -1,0 +1,40 @@
+a {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#gallerize-ex {
+  background: white;
+}
+
+.miniImage {
+  margin: 0%;
+  width: 50px;
+  border-bottom: 3px solid  transparent;
+  left: 0;
+  right: 0;
+}
+
+.selectedImage {
+  width: 50px;
+  border-bottom: 3px solid red;
+  margin: 0%;
+  background-repeat: no-repeat;
+}
+// .miniImage:hover {
+//  border: 1px;
+//  border-style: solid;
+//  background-color: greenyellow;
+// }
+
+mat-icon, button, .productDescription {
+  font-size: 13px;
+}
+.costmat {
+  background-image: url('/src/assets/image/background.jpg');
+  font-size: 20px;
+}
+// .imgColors:hover {
+//   border-style: solid;
+// }
+

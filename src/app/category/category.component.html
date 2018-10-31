@@ -1,0 +1,23 @@
+<div>
+  <div fxLyaout="column" fxFlex="25">
+    <div style="height: 80px;" fxLayoutAlign="center center">
+      <span >Ангилал</span>
+    </div>
+    <div class="category">
+      <div class="tab">
+        <button mat-button *ngFor="let category of categories; let i = index" (mouseenter)="toggleCategory(i)">
+          {{category.name}}</button>
+      </div>
+      <div class="categories">
+        <h4 *ngFor="let subCategory of subCategories"><a href="subCategory.link">{{subCategory.name}}</a></h4>
+      </div>
+    </div>
+  </div>
+
+  <slideshow fxFlex="75" #slideshow [imageUrls]="imageUrls" [height]="height" [minHeight]="minHeight" [arrowSize]="arrowSize"
+    [showArrows]="showArrows" [disableSwiping]="disableSwiping" [autoPlay]="autoPlay" [stopAutoPlayOnSlide]="stopAutoPlayOnSlide"
+    [debug]="debug" [backgroundSize]="backgroundSize" [backgroundPosition]="backgroundPosition" [backgroundRepeat]="backgroundRepeat"
+    [showDots]="showDots" [dotColor]="dotColor" [showCaptions]="showCaptions" [captionColor]="captionColor"
+    [captionBackground]="captionBackground" [lazyLoad]="lazyLoad" [hideOnNoSlides]="hideOnNoSlides">
+  </slideshow>
+</div>

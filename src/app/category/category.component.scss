@@ -1,0 +1,48 @@
+.tab {
+  float: left;
+  border: 1px solid #ffffff;
+  background-color: #606060;
+  width: 80%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: #ffffff;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 10px;
+}
+.tab button:hover {
+  background-color: rgb(255, 255, 255);
+  color: #606060;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ffffff;
+}
+
+
+.category:hover .categories {
+  display: block;
+}
+
+.categories {
+  display: none;
+  z-index: 100000;
+  left:  415px;
+  top: 122px;
+  width: 63.8%;
+  height: 402px;
+  position: absolute;
+  background-color: #a5a5a5;
+}
+
