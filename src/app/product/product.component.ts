@@ -6,7 +6,7 @@ import {
   MatSnackBar
 } from '@angular/material';
 import {
-  TaobaoProductModel, SizesEntity
+  TaobaoProductModel,
 } from './product.model';
 @Component({
   selector: 'app-product',
@@ -45,13 +45,13 @@ export class ProductComponent implements OnInit {
       datasrc: 'https://placeimg.com/640/480/animals'
     }
   ];
-
   product: TaobaoProductModel;
+  unit: number;
+  price_regular1: number;
+  attributes: object[] = [];
   constructor(public snackBar: MatSnackBar) {}
 
-
   ngOnInit() {
-    // this.bigPic = this.pics[0].src;
 
     this.product = {
       main_title: 'Зуух Америкийн Retro хар хар олон халаасны мотоцикл хүрэм хар хандлага зэрлэг Tooling хүрэм хүрэм эрэгтэй',
@@ -136,8 +136,7 @@ export class ProductComponent implements OnInit {
           id: '20509:6145171'
         }
       ],
-      colors: [
-        {
+      colors: [{
           name: 'Хар',
           id: '1627207:28341',
           image: '',
@@ -148,46 +147,45 @@ export class ProductComponent implements OnInit {
           image: '',
         }
       ],
-      images: [{
-          small: 'https://img.alicdn.com/imgextra/i4/1809641154/TB2Su3Ez_JYBeNjy1zeXXahzVXa_!!1809641154.jpg_400x400.jpg',
-          big: 'https://img.alicdn.com/imgextra/i4/1809641154/TB2Su3Ez_JYBeNjy1zeXXahzVXa_!!1809641154.jpg_1200x1200.jpg'
-        },
-        {
-          small: 'https://img.alicdn.com/imgextra/i4/1809641154/TB2Su3Ez_JYBeNjy1zeXXahzVXa_!!1809641154.jpg_50x50.jpg',
-          big: 'https://img.alicdn.com/imgextra/i4/1809641154/TB2Su3Ez_JYBeNjy1zeXXahzVXa_!!1809641154.jpg_400x400.jpg'
-        },
-        {
-          small: 'https://img.alicdn.com/bao/uploaded/i2/1809641154/TB2vgvyjbZnBKNjSZFGXXbt3FXa_!!1809641154.jpg_50x50.jpg',
-          big: 'https://img.alicdn.com/bao/uploaded/i2/1809641154/TB2vgvyjbZnBKNjSZFGXXbt3FXa_!!1809641154.jpg_400x400.jpg'
-        },
-        {
-          small: 'https://img.alicdn.com/imgextra/i2/1809641154/TB23qRsjcUrBKNjSZPxXXX00pXa_!!1809641154.jpg_50x50.jpg',
-          big: 'https://img.alicdn.com/imgextra/i2/1809641154/TB23qRsjcUrBKNjSZPxXXX00pXa_!!1809641154.jpg_400x400.jpg'
-        },
-        {
-          small: 'https://img.alicdn.com/imgextra/i1/1809641154/TB2im48z7yWBuNjy0FpXXassXXa_!!1809641154.jpg_50x50.jpg',
-          big: 'https://img.alicdn.com/imgextra/i1/1809641154/TB2im48z7yWBuNjy0FpXXassXXa_!!1809641154.jpg_400x400.jpg'
-        },
-        {
-          small: 'https://img.alicdn.com/imgextra/i3/1809641154/TB2BvRbzWSWBuNjSsrbXXa0mVXa_!!1809641154.jpg_50x50.jpg',
-          big: 'https://img.alicdn.com/imgextra/i3/1809641154/TB2BvRbzWSWBuNjSsrbXXa0mVXa_!!1809641154.jpg_400x400.jpg'
-        }
+      images: [
+        'https://img.alicdn.com/imgextra/i4/1809641154/TB2Su3Ez_JYBeNjy1zeXXahzVXa_!!1809641154.jpg',
+        'https://img.alicdn.com/imgextra/i4/1809641154/TB2Su3Ez_JYBeNjy1zeXXahzVXa_!!1809641154.jpg',
+        'https://img.alicdn.com/bao/uploaded/i2/1809641154/TB2vgvyjbZnBKNjSZFGXXbt3FXa_!!1809641154.jpg',
+        'https://img.alicdn.com/imgextra/i2/1809641154/TB23qRsjcUrBKNjSZPxXXX00pXa_!!1809641154.jpg',
+        'https://img.alicdn.com/imgextra/i1/1809641154/TB2im48z7yWBuNjy0FpXXassXXa_!!1809641154.jpg',
+        'https://img.alicdn.com/imgextra/i3/1809641154/TB2BvRbzWSWBuNjSsrbXXa0mVXa_!!1809641154.jpg',
       ],
-      // "store": {
-      //   "name": "掌柜:卢百万103",
-      //   "cover_image": "//gtms01.alicdn.com/tps/i1/TB1zIlNFVXXXXXtXpXXxwHxIVXX-198-60.png",
-      //   "star_count": "5",
-      //   "star_image": "rgba(0, 0, 0, 0) -webkit-image-set(url(\"https://gtms03.alicdn.com/tps/i4/TB17JRyFVXXXXXhXpXXxPfUFXXX-16-16.gif\") 1x, url(\"https://gtms03.alicdn.com/tps/i1/TB1oTVxFVXXXXXyXpXXBStGGXXX-32-32.gif\") 2x) no-repeat scroll 0px 0px / auto padding-box border-box",
-      //   "gold_seller_image": "true",
-      //   "gold_continuous_image": "true",
-      //   "description": "4.7",
-      //   "service": "4.7",
-      //   "logistics": "4.7",
-      //   "store_link": "//lubaiwan.taobao.com",
-      //   "ratings_link": "//rate.taobao.com/user-rate-c9841f6e2aec2340f693529aa24fbce8.htm",
-      //   "shopkeeper": "卢百万103",
-      //   "qualification": "10888元"
-      // },
+      store: {
+        name: '掌柜:卢百万103',
+        cover_image: '//gtms01.alicdn.com/tps/i1/TB1zIlNFVXXXXXtXpXXxwHxIVXX-198-60.png',
+        star_count: '5',
+        star_image: 'rgba(0, 0, 0, 0) -webkit-image-set(url(\"https://gtms03.alicdn.com/tps/i4/TB17JRyFVXXXXXhXpXXxPfUFXXX-16-16.gif\") 1x, url(\'https://gtms03.alicdn.com/tps/i1/TB1oTVxFVXXXXXyXpXXBStGGXXX-32-32.gif\') 2x) no-repeat scroll 0px 0px / auto padding-box border-box',
+        gold_seller_image: 'true',
+        gold_continuous_image: 'true',
+        description: '4.7',
+        service: '4.7',
+        logistics: '4.7',
+        store_link: '//lubaiwan.taobao.com',
+        ratings_link: '//rate.taobao.com/user-rate-c9841f6e2aec2340f693529aa24fbce8.htm',
+        shopkeeper: '卢百万103',
+        qualification: '10888元'
+      },
+      // recommended -> image _180x180.jpg
+      // looked_watched -> image _80x80.jpg
+      // colors -> image _30x30.jpg
+      // images ->  esvel _1200x1200.jpg
+      recommended: [{
+        image: '//img.alicdn.com/bao/uploaded/i1/1809641154/O1CN011KOZWplP44IMDzD_!!1809641154.jpg',
+        product_id: 580500375472, // silk.mn/product?id=580500375472
+        price: 188.00,
+        title: 'АНУ-ын чимэг зуух Мартин гутал эрэгтэй өндөр дээд энгийн гутал урсгал эрэгтэйчүүдийн богино гутал Британийн Retro гутал'
+      }, ],
+      looked_watched: [{
+        image: 'http://img.alicdn.com/bao/uploaded/O1CN011KOZW1WQUeua9mv_!!1809641154.jpg',
+        product_id: 574788956487,
+        price: 188.00,
+        title: 'Зуухны АНУ-ын чимэг олон талын тойрч явах хүрэм эрэгтэй сул чиг хандлага зэрлэг хар олон халаасны хар хүрэм эрэгтэй урсгал'
+      }, ],
       sku: {
         ';20509:28316;1627207:28341;': {
           price: '39900.00',
@@ -239,14 +237,21 @@ export class ProductComponent implements OnInit {
         }
       }
     };
-    this.bigPic = this.product.images[0].big;
+    this.bigPic = this.product.images[0];
+    const n = this.product.attributes.length;
+    for (let i = 0; i < n; i++) {
+      const attr = this.product.attributes[i].split(':');
+      if (attr.length >= 2) {
+        this.attributes.push({
+          'key': attr[0],
+          'value': attr[1]
+        });
+      }
+    }
   }
-
-
   sizeChange(size_id) {
     this.size_id = size_id;
     const key = ';' + this.size_id + ';' + this.color_id + ';';
-    console.log('size id:', size_id);
     if (this.product.sku[key]) {
       this.product.price_regular = this.product.sku[key].price;
     }
@@ -255,12 +260,12 @@ export class ProductComponent implements OnInit {
   colorChange(color_id) {
     this.color_id = color_id;
     const key = ';' + this.size_id + ';' + this.color_id + ';';
-    console.log('color id:', color_id);
-    console.log(key);
     if (this.product.sku[key]) {
-      console.log('here');
       this.product.price_regular = this.product.sku[key].price;
     }
+  }
+  unitChange() {
+    this.price_regular1 = parseFloat(this.product.price_regular) * this.unit;
   }
 
   cardSnackBar() {
@@ -276,11 +281,7 @@ export class ProductComponent implements OnInit {
   }
 
   togglePic(index: number) {
-    this.bigPic = this.product.images[index].big;
+    this.bigPic = this.product.images[index];
     this.selectedImageIndex = index;
-  }
-
-  changePrice() {
-
   }
 }

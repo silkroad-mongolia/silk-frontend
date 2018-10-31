@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  SlideModel
-} from '../models/slide.model';
+import { SlideModel } from '../models/slide.model';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -12,7 +10,6 @@ export class CategoryComponent implements OnInit {
   categories: CategoryModel[] = [
     {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
     {name: 'Woman Dress', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
     {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
     {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
   ];

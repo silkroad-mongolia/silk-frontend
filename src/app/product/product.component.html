@@ -1,29 +1,29 @@
 <div fxLayout="row" fxLayoutAlign="space-between start">
   <div fxFlex="35">
+    <a [href]="bigPic">
+      <ngx-img-zoom fxLayoutAlign="center start" [imgSrc]="bigPic" [imgStyle]="'width:383px; height:363px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px  #dcdcdc;'"
+        [resultStyle]="'width:363px; height:363px; background-repeat: no-repeat; z-index: 2; position:absolute;
+                  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0), 0 1px 2px rgba(0,0,0,0);
+                    box-shadow: 0 1px 3px rgba(0,0,0,0), 0 1px 2px rgba(0,0,0,0); top: 0;left: 100%;'"
+        [lensStyle]="'width:100px; height:100px;  '" [containerStyle]="'width:400px; height:400px;'">
+      </ngx-img-zoom>
+    </a>
 
-    <div *ngFor="let image of product.images; let i=index">
-      <div *ngIf="selectedImageIndex === i" class="selectedImage">
-        <img [src]="image.small" (mouseenter)="togglePic(i)" class="miniImage" >
-      </div>
-      <div *ngIf="selectedImageIndex !== i">
-        <img [src]="image.small" (mouseenter)="togglePic(i)" class="miniImage">
-      </div>
-    </div>
-
-
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <mat-grid-list cols="5">
+      <a [href]="bigPic">
+        <div *ngFor="let image of product.images; let i=index">
+          <mat-grid-tile *ngIf="selectedImageIndex === i" class="selectedImage" fxLayoutAlign="center center">
+            <img src="{{image}}_50x50.jpg" (mouseenter)="togglePic(i)">
+          </mat-grid-tile>
+          <mat-grid-tile *ngIf="selectedImageIndex !== i" class="miniImage" fxLayoutAlign="center center">
+            <img src="{{image}}_50x50.jpg" (mouseenter)="togglePic(i)">
+          </mat-grid-tile>
+        </div>
+      </a>
+    </mat-grid-list>
     <br>
-    <br>
-    <br>
-    <br>
-
-    <ngx-img-zoom [imgSrc]="bigPic" [imgStyle]="'width:383px; height:363px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px  #dcdcdc;'"
-      [resultStyle]="'width:363px; height:363px; background-repeat: no-repeat; z-index: 2; position:absolute;
-                  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); top: 0;left: 100%;'"
-      [lensStyle]="'width:100px; height:100px'" [containerStyle]="'width:400px; height:400px;'"></ngx-img-zoom>
   </div>
-
-
   <br>
   <br>
   <div class="productDescription" fxFlex="63" fxLayoutAlign="space-between start">
@@ -55,44 +55,33 @@
           <div>
             <span>Хэмжээ:</span>
             <mat-chip-list>
-              <mat-chip *ngFor="let size of product.sizes; let i=index" style="width: 50px" (click)="sizeChange(size.id)">{{size.name}}</mat-chip>
+              <span *ngFor="let size of product.sizes; let i=index">
+                <mat-chip style="width: 50px" (click)="sizeChange(size.id)" selected="true">{{size.name}}</mat-chip>
+              </span>
             </mat-chip-list>
-
           </div>
           <a routerLink="/">Хэрхэн размер сонгох вэ?</a>
         </div>
-
         <div>
           <span>Өнгө: </span>
           <br>
-          <mat-chip-list>
-            <span *ngFor="let color of product.colors">
-              <img *ngIf="color.image" class="imgColors" [src]="color.src" style="width: 60px; border-radius: 50%;" (click)="colorChange(color.id)">
-              <mat-chip *ngIf="!color.image" style="width: 60px; border-radius: 9%;" (click)="colorChange(color.id)">{{color.name}}</mat-chip>
-            </span>
-          </mat-chip-list>
           <div>
-
+            <mat-chip-list>
+              <span *ngFor="let color of product.colors">
+                <img *ngIf="color.image" class="imgColors" src="{{color.image}}_30x30.jpg" style="width: 60px; border-radius: 50%;"
+                  (click)="colorChange(color.id)">
+                <mat-chip *ngIf="!color.image" style="width: 60px; border-radius: 9%;" selected (click)="colorChange(color.id)">{{color.name}}</mat-chip>
+              </span>
+            </mat-chip-list>
           </div>
-
         </div>
-
       </div>
-      <!-- <div>
-        <span>Багцын төрөл: </span>
-        <br>
-        <button mat-raised-button> Стандарт багц </button>
-        <button mat-raised-button> Багц 1 </button>
-        <button mat-raised-button> Багц 2</button>
-        <button mat-raised-button> Багц 3 </button>
-      </div> -->
-      <!-- <span value="cost">Хятад улс доторх тээвэр: {{ cost }} ₮</span> -->
       <div>
         <span>
           Тоо хэмжээ
-          <mat-form-field style="width: 40px;">
-            <input matInput value="1" type="number" min="1">
-          </mat-form-field> ширхэг, Нийт үнэ {{product.price_regular}}
+          <mat-form-field style="width: 40px;" >
+            <input matInput value="1" type="number" min="1" [(ngModel)]="unit" (change)="unitChange()">
+          </mat-form-field> ширхэг, Нийт үнэ {{price_regular1}}
         </span>
       </div>
       <button mat-raised-button (click)="cardSnackBar()">
@@ -108,22 +97,33 @@
     </div>
     <div fxFlex="40">
       <mat-card>
-        <span>Нэр: <a routerLink="/"> 蒙威罗迪旗舰店</a> </span>
+        <img [src]="product.store.cover_image">
+        <br>
+        <span>Нэр: <a routerLink="/"> {{ product.store.name }}</a> </span>
         <br>
         <span>Байршил: <a routerLink="/">Цюаньчжоу <mat-icon>location_on</mat-icon></a></span>
         <br>
+        <span>{{product.store.star_count}} years old shop</span>
+        <br>
+        <span>Reputation
+          <!-- <div style="background:{{product.store.star_image}}"></div> -->
+        </span>
+        <br>
+        <a>shopkeeper: {{ product.store.shopkeeper}}</a>
+        <br>
+        <span>Qualification: {{product.store.qualification}}</span>
+        <br>
+        <span>Description {{product.store.description}}</span> <br>
+        <span>Logistics {{product.store.logistics}}</span> <br>
+        <span>Service {{product.store.service}}</span><br>
         <hr>
         <br>
-        <div fxLayout="row">
-          <div> <span>Тээвэрлэлт</span> 4.7 </div>
-          <hr>
-          <div> <span>Бараа</span> 4.7 </div>
-          <hr>
-          <div> <span>Үйлчилгээ</span> 4.7 </div>
-        </div>
-        <mat-grid-list cols="2" rowHeight="2:1">
-          <mat-grid-tile *ngFor="let pic of pics; let i=index">
-            <img [src]="pic.src">
+        <mat-grid-list cols="3">
+          <mat-grid-tile *ngFor="let looked_watched of product.looked_watched">
+            <div fxLayout="column" fxLayoutAlign="center center">
+              <img src="{{looked_watched.image}}_80x80.jpg" title="{{looked_watched.title}}">
+              <span>Үнэ: {{looked_watched.price}}</span>
+            </div>
           </mat-grid-tile>
         </mat-grid-list>
         <div>
@@ -136,14 +136,48 @@
   </div>
 </div>
 <div>
+    <div ng2-carouselamos
+      [width]="900"
+      [items]="product.recommended"
+      [$item]="itemTemplate"
+      [$prev]="prevTemplate"
+      [$next]="nextTemplate"
+      (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
+    <ng-template #prevTemplate>
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </ng-template>
+
+    <ng-template #nextTemplate>
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </ng-template>
+
+    <ng-template let-item let-i="index" #itemTemplate>
+      <div class="items" fxLayout="column" fxLayoutAlign="center center" >
+        <img src="{{item.image}}_180x180.jpg" [title]="item.title">
+        <span>Үнэ: {{item.price}}</span>
+      </div>
+    </ng-template>
+  </div>
+<div>
+  <br>
+  <br>
+  <br>
+  <br>
   <mat-tab-group>
     <mat-tab label="Зурган тайлбар">
       <div fxLayout="row" fxLayoutAlign="space-around start">
         <div fxFlex="70">
           <img *ngFor="let description_image of product.description_images" src="{{description_image}}">
         </div>
-        <div fxFlex="25">
-          <div *ngFor="let attribute of product.attributes">{{attribute}}</div>
+        <div fxFlex="30">
+          <div *ngFor="let attribute of attributes; let i=index;" fxLayout="row">
+            <div fxFlex="50">
+              {{attribute.key}}:
+            </div>
+            <div>
+              {{attribute.value}}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -153,5 +187,3 @@
     <mat-tab label="Хятад худалдан авагчдын сэтгэгдэл"> Хятад худалдан авагчдын сэтгэгдэл </mat-tab>
   </mat-tab-group>
 </div>
-
-
