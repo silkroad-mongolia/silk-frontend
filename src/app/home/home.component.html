@@ -3,39 +3,87 @@
 <h2 fxLayoutAlign="center center">Үйлчлүүлэгчид бидний тухай</h2>
 <hr>
 <h2>Санал болгох бараанууд</h2>
-<mat-grid-list cols="4" rowHeight="4:1">
-  <mat-grid-tile *ngFor="let productsSuggestion of productsSuggestions; let i = index">
-    <a [href]="productsSuggestion.href"><img [src]="productsSuggestion.url"></a>
-  </mat-grid-tile>
-</mat-grid-list>
+<div>
+  <div ng2-carouselamos [width]="900" [items]="productsSuggestions" [$item]="itemTemplate" [$prev]="prevTemplate"
+    [$next]="nextTemplate" (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
+  <ng-template #prevTemplate>
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </ng-template>
 
+  <ng-template #nextTemplate>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </ng-template>
+
+  <ng-template let-item let-i="index" #itemTemplate>
+    <div class="items">
+      <img [src]="item.url">
+    </div>
+  </ng-template>
+</div>
 <h2>Эрэлттэй бараанууд</h2>
-<mat-grid-list cols="4" rowHeight="4:1">
-  <mat-grid-tile *ngFor="let productsExpected of productsExpecteds; let i = index">
-    <a [href]="productsExpected.href"><img [src]="productsExpected.url"></a>
-  </mat-grid-tile>
-</mat-grid-list>
+<div>
+  <div ng2-carouselamos [width]="900" [items]="productsExpecteds" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
+    (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
+  <ng-template #prevTemplate>
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </ng-template>
+
+  <ng-template #nextTemplate>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </ng-template>
+
+  <ng-template let-item let-i="index" #itemTemplate>
+    <div class="items">
+      <img [src]="item.url">
+    </div>
+  </ng-template>
+</div>
 
 <h2>Сүүлд үзсэн бараанууд</h2>
-<mat-grid-list cols="4" rowHeight="4:1">
-  <mat-grid-tile *ngFor="let productLastseen of productLastseens; let i = index">
-    <a [href]="productLastseen.href"><img [src]="productLastseen.url"></a>
-  </mat-grid-tile>
-</mat-grid-list>
+<div>
+  <div ng2-carouselamos [width]="900" [items]="productLastseens" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
+    (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
+  <ng-template #prevTemplate>
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </ng-template>
+
+  <ng-template #nextTemplate>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </ng-template>
+
+  <ng-template let-item let-i="index" #itemTemplate>
+    <div class="items">
+      <img [src]="item.url">
+    </div>
+  </ng-template>
+</div>
 
 <h2>Алдартай брендүүд</h2>
 
+
 <h2>Шилдэг дэлгүүрүүд</h2>
-<mat-grid-list cols="4" rowHeight="4:1">
-  <mat-grid-tile *ngFor="let product of products; let i = index">
-    <a [href]="product.href"><img [src]="product.url"></a>
-  </mat-grid-tile>
-</mat-grid-list>
+<div>
+  <div ng2-carouselamos [width]="900" [items]="products" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
+    (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
+  <ng-template #prevTemplate>
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </ng-template>
+
+  <ng-template #nextTemplate>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </ng-template>
+
+  <ng-template let-item let-i="index" #itemTemplate>
+    <div class="items">
+      <img [src]="item.url">
+    </div>
+  </ng-template>
+</div>
 
 
 <div id="mySidenav" class="sidenav">
-    <a href="#" id="about">About</a>
-    <a href="#" id="blog">Blog</a>
-    <a href="#" id="projects">Projects</a>
-    <a href="#" id="contact">Contact</a>
-  </div>
+  <a href="#" id="about">About</a>
+  <a href="#" id="blog">Blog</a>
+  <a href="#" id="projects">Projects</a>
+  <a href="#" id="contact">Contact</a>
+</div>

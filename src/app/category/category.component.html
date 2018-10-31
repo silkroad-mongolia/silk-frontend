@@ -1,12 +1,16 @@
 <div>
-  <div fxFlex="25" class="category">
-    <div class="tab">
-      <button mat-button  *ngFor="let category of categories; let i = index"
-      (mouseover)="toggleCategory(i)"
-      style="border-radius: 8%">{{category.name}}</button>
+  <div fxLyaout="column" fxFlex="25">
+    <div style="height: 80px;" fxLayoutAlign="center center">
+      <span >Ангилал</span>
     </div>
-    <div class="categories">
-      <h4 *ngFor="let subCategory of subCategories">{{subCategory}}</h4>
+    <div class="category">
+      <div class="tab">
+        <button mat-button *ngFor="let category of categories; let i = index" (mouseenter)="toggleCategory(i)">
+          {{category.name}}</button>
+      </div>
+      <div class="categories">
+        <h4 *ngFor="let subCategory of subCategories"><a href="subCategory.link">{{subCategory.name}}</a></h4>
+      </div>
     </div>
   </div>
 

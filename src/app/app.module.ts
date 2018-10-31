@@ -27,6 +27,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { PrivateofficeComponent } from './privateoffice/privateoffice.component';
 import { ProductorderComponent } from './productorder/productorder.component';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
 
 @NgModule({
@@ -58,8 +59,8 @@ import { NgxImgZoomModule } from 'ngx-img-zoom';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxImgZoomModule
-
+    NgxImgZoomModule,
+    Ng2CarouselamosModule,
   ],
   providers: [
     AuthGuard,
