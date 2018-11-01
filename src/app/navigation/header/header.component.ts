@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/cor
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
-// import { CategoryModel, SubCategoryModel  } from './header.module';
+import * as URL from 'url-parse';
 
 @Component({
   selector: 'app-header',
@@ -41,17 +41,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   search() {
-    console.log('searched');
-    console.log(this.searchString);
-    if (this.searchString.startsWith('https://')) {
-      console.log('this is link');
-      console.log(this.searchString);
-      const url = this.router.parseUrl(decodeURIComponent(this.searchString));
-      // console.log(url.queryParamMap);
-      console.log(url.queryParams['id']);
-      const product_id = url.queryParams['id'];
-      console.log(product_id);
-      this.router.navigate(['/product?id=' + product_id]);
+    if (this.searchString.startsWith('https://item.taobao.com/item')) {
+      const url = URL(this.searchString, {} , true);
+      const product_id = url.query['id'];
+      if (product_id) {
+        this.router.navigate(['/product', 'taobao', product_id]);
+      }
     }
   }
 
