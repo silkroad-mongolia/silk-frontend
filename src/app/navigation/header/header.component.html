@@ -20,12 +20,12 @@
       </button>
     </div>
     <div>
-      <input type="text" name="search" (click)="search()" [(ngModel)]="searchString" >
-      <button mat-icon-button matSuffix>
+      <input type="text" name="search" [(ngModel)]="searchString" >
+      <button mat-icon-button matSuffix (click)="search()">
         <mat-icon style="color: black;">search</mat-icon>
       </button>
-      <span id="searchBtn" (click)="search()">
-      </span>
+      <!-- <span id="searchBtn" >
+      </span> -->
     </div>
   </div>
 

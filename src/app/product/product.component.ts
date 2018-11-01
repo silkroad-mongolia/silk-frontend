@@ -38,8 +38,8 @@ export class ProductComponent implements OnInit {
       if (paramMap.has('id') && paramMap.has('store')) {
         const id = paramMap.get('id');
         const store = paramMap.get('store');
+
         this.productService.getProduct(store, id).subscribe(product => {
-          this.isLoading = false;
           this.product = product;
 
           this.bigPic = this.product.images[0];
@@ -58,7 +58,7 @@ export class ProductComponent implements OnInit {
           console.log(error);
         });
       } else {
-        console.log('No ID given');
+        console.log('No Store or ID given');
       }
     });
     // this.product = {
