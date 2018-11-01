@@ -1,8 +1,9 @@
 <div *ngIf="isLoading">
   <mat-spinner></mat-spinner>
 </div>
-<div *ngIf="!isLoading">
 
+<div *ngIf="!isLoading">
+<app-topnav></app-topnav>
   <div fxLayout="row" fxLayoutAlign="space-between start">
     <div fxFlex="35">
       <a [href]="bigPic">
@@ -13,7 +14,7 @@
           [lensStyle]="'width:100px; height:100px;  '" [containerStyle]="'width:400px; height:400px;'">
         </ngx-img-zoom>
       </a>
-  
+
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       <mat-grid-list cols="5">
         <a [href]="bigPic">
@@ -32,7 +33,7 @@
     <br>
     <br>
     <div class="productDescription" fxFlex="63" fxLayoutAlign="space-between start">
-  
+
       <div fxFlex="58">
         <div>
           <span>{{product.main_title}}</span>
@@ -41,7 +42,7 @@
           <!-- <span type="number"> {{ realcost }} ₮</span> -->
           <h2>{{ product.price_regular }} ₮</h2>
         </mat-card>
-  
+
         <div>
           <div>
             <span> last 30 days: {{ product.cumm_comments }} ширхэг <button mat-icon-button matTooltip="Уг бараа нь бэлэн">
@@ -85,7 +86,7 @@
           <span>
             Тоо хэмжээ
             <mat-form-field style="width: 40px;" >
-              <input matInput value="1" type="number" min="1" [(ngModel)]="unit" (change)="unitChange()">
+              <input matInput value="1" type="number" min="1" [(ngModel)]="unit" (click)="unitChange()">
             </mat-form-field> ширхэг, Нийт үнэ {{price_regular1}}
           </span>
         </div>
@@ -100,44 +101,7 @@
           <button mat-raised-button routerLink="/">Захиалах заавар үзэх</button>
         </div>
       </div>
-      <div fxFlex="40">
-        <mat-card>
-          <img [src]="product.store.cover_image">
-          <br>
-          <span>Нэр: <a routerLink="/"> {{ product.store.name }}</a> </span>
-          <br>
-          <span>Байршил: <a routerLink="/">Цюаньчжоу <mat-icon>location_on</mat-icon></a></span>
-          <br>
-          <span>{{product.store.star_count}} years old shop</span>
-          <br>
-          <span>Reputation
-            <!-- <div style="background:{{product.store.star_image}}"></div> -->
-          </span>
-          <br>
-          <a>shopkeeper: {{ product.store.shopkeeper}}</a>
-          <br>
-          <span>Qualification: {{product.store.qualification}}</span>
-          <br>
-          <span>Description {{product.store.description}}</span> <br>
-          <span>Logistics {{product.store.logistics}}</span> <br>
-          <span>Service {{product.store.service}}</span><br>
-          <hr>
-          <br>
-          <mat-grid-list cols="3">
-            <mat-grid-tile *ngFor="let looked_watched of product.looked_watched">
-              <div fxLayout="column" fxLayoutAlign="center center">
-                <img src="{{looked_watched.image}}_80x80.jpg" title="{{looked_watched.title}}">
-                <span>Үнэ: {{looked_watched.price}}</span>
-              </div>
-            </mat-grid-tile>
-          </mat-grid-list>
-          <div>
-            <a routerLink="/"><span>
-                <mat-icon>menu</mat-icon>Энэ дэлгүүрийн бүх барааг харах
-              </span></a>
-          </div>
-        </mat-card>
-      </div>
+
     </div>
   </div>
   <div>
@@ -151,11 +115,11 @@
       <ng-template #prevTemplate>
         <mat-icon>keyboard_arrow_left</mat-icon>
       </ng-template>
-  
+
       <ng-template #nextTemplate>
         <mat-icon>keyboard_arrow_right</mat-icon>
       </ng-template>
-  
+
       <ng-template let-item let-i="index" #itemTemplate>
         <div class="items" fxLayout="column" fxLayoutAlign="center center" >
           <img src="{{item.image}}_180x180.jpg" [title]="item.title">
@@ -185,7 +149,7 @@
             </div>
           </div>
         </div>
-  
+
       </mat-tab>
       <mat-tab label=" Ижил төстэй бараанууд"> Ижил төстэй бараанууд </mat-tab>
       <mat-tab label=" Яг адилхан бараанууд"> Яг адилхан бараанууд </mat-tab>
