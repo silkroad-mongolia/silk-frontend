@@ -1,0 +1,10 @@
+<mat-toolbar>
+  <div>
+    <div class="dropdown" *ngFor="let category of categories ; let i = index" (mouseenter)="toggleCategory(i)">
+      <button style="width: 100px" mat-button fxLayoutAlign="center center">{{category.name}}</button>
+      <div class="dropdown-content">
+        <h4 *ngFor="let subCategory of subCategories"><a href="subCategory.link">{{subCategory.name}}</a></h4>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

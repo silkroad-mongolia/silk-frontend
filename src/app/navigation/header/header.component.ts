@@ -14,13 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   searchString = '';
 
-  subCategories: SubCategoryModel[] = [];
-  categories: CategoryModel[] = [
-    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-    {name: 'Woman Dress', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-  ];
+
   @Output() sidenavToggle = new EventEmitter<void>();
 
   constructor(private authService: AuthService, private router: Router ) {  }
@@ -53,7 +47,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authListenerSubs.unsubscribe();
   }
-  toggleCategory(index: number) {
-    this.subCategories = this.categories[index].subCategories;
-  }
+
 }

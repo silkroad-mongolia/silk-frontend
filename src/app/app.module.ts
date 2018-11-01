@@ -28,6 +28,8 @@ import { PrivateofficeComponent } from './privateoffice/privateoffice.component'
 import { ProductorderComponent } from './productorder/productorder.component';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { TopnavComponent } from './navigation/topnav/topnav.component';
+
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
     ProductsComponent,
     ProfileComponent,
     PrivateofficeComponent,
-    ProductorderComponent
+    ProductorderComponent,
+    TopnavComponent
   ],
   imports: [
     BrowserModule,
