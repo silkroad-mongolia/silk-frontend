@@ -4,7 +4,7 @@
 <hr>
 <h2>Санал болгох бараанууд</h2>
 <div>
-  <div ng2-carouselamos [width]="900" [items]="productsSuggestions" [$item]="itemTemplate" [$prev]="prevTemplate"
+  <div ng2-carouselamos width="90%" [items]="productsSuggestions" [$item]="itemTemplate" [$prev]="prevTemplate"
     [$next]="nextTemplate" (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
   <ng-template #prevTemplate>
     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -22,7 +22,7 @@
 </div>
 <h2>Эрэлттэй бараанууд</h2>
 <div>
-  <div ng2-carouselamos [width]="900" [items]="productsExpecteds" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
+  <div ng2-carouselamos width="100%"  [items]="productsExpecteds" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
     (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
   <ng-template #prevTemplate>
     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -41,7 +41,7 @@
 
 <h2>Сүүлд үзсэн бараанууд</h2>
 <div>
-  <div ng2-carouselamos [width]="900" [items]="productLastseens" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
+  <div ng2-carouselamos width="100%"  [items]="productLastseens" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
     (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
   <ng-template #prevTemplate>
     <mat-icon>keyboard_arrow_left</mat-icon>
@@ -63,7 +63,7 @@
 
 <h2>Шилдэг дэлгүүрүүд</h2>
 <div>
-  <div ng2-carouselamos [width]="900" [items]="products" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
+  <div ng2-carouselamos width="100%"  [items]="products" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"
     (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
   <ng-template #prevTemplate>
     <mat-icon>keyboard_arrow_left</mat-icon>

@@ -15,9 +15,18 @@
     <mat-icon>add_circle</mat-icon>
     Add Badge
   </a>
-  <a mat-list-item (click)="onClose()">
-    <mat-icon>exposure_plus_1</mat-icon>
-    Assign Badge
-  </a>
+  <button mat-button  [matMenuTriggerFor]="menu">
+      <mat-icon>person_outline</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+    <div>
+      <ul fxLayout="column">
+        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</button>
+        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/signup" routerLinkActive="warn">Signup</button>
+        <button *ngIf="userIsAuthenticated" mat-button (click)="onLogout()">Logout</button>
+        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/profile">Profile</button>
+      </ul>
+    </div>
+  </mat-menu>
   <mat-divider></mat-divider>
 </mat-nav-list>

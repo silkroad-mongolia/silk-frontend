@@ -8,6 +8,8 @@ import {
 import {
   TaobaoProductModel,
 } from './product.model';
+import { ProductService } from './product.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -15,45 +17,53 @@ import {
 })
 
 export class ProductComponent implements OnInit {
+  breakpoint: string;
   bigPic: string;
-  selectedImageIndex: number;
+  selectedImageIndex = 0;
   color_id: string;
   size_id: string;
-
-  pics = [{
-      src: 'https://placeimg.com/640/480/animals',
-      datasrc: 'https://placeimg.com/640/480/animals'
-    },
-    {
-      src: 'https://placeimg.com/640/480/architechture',
-      datasrc: 'https://placeimg.com/640/480/architechture'
-    },
-    {
-      src: 'https://placeimg.com/640/480/nature',
-      datasrc: 'https://placeimg.com/640/480/nature'
-    },
-    {
-      src: 'https://placeimg.com/640/480/people',
-      datasrc: 'https://placeimg.com/640/480/people'
-    },
-    {
-      src: 'https://placeimg.com/640/480/tech',
-      datasrc: 'https://placeimg.com/640/480/tech'
-    },
-    {
-      src: 'https://placeimg.com/640/480/animals',
-      datasrc: 'https://placeimg.com/640/480/animals'
-    }
-  ];
   product: TaobaoProductModel;
-  unit: number;
+  unit = 1;
   price_regular1: number;
   attributes: object[] = [];
-  constructor(public snackBar: MatSnackBar) {}
+  isLoading = false;
+
+  constructor(private snackBar: MatSnackBar,
+    private productService: ProductService,
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit() {
+    this.onResize();
 
-    this.product = {
+    this.isLoading = true;
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('id') && paramMap.has('store')) {
+        const id = paramMap.get('id');
+        const store = paramMap.get('store');
+
+        this.productService.getProduct(store, id).subscribe(product => {
+          this.product = product;
+
+          this.bigPic = this.product.images[0];
+          const n = this.product.attributes.length;
+          for (let i = 0; i < n; i++) {
+            const attr = this.product.attributes[i].split(':');
+            if (attr.length >= 2) {
+              this.attributes.push({
+                'key': attr[0],
+                'value': attr[1]
+              });
+            }
+          }
+          this.isLoading = false;
+        }, (error) => {
+          console.log(error);
+        });
+      } else {
+        this.isLoading = false;
+
+         this.product = {
       main_title: 'Зуух Америкийн Retro хар хар олон халаасны мотоцикл хүрэм хар хандлага зэрлэг Tooling хүрэм хүрэм эрэгтэй',
       sub_title: '',
       price_regular: '399.00',
@@ -237,18 +247,30 @@ export class ProductComponent implements OnInit {
         }
       }
     };
-    this.bigPic = this.product.images[0];
-    const n = this.product.attributes.length;
-    for (let i = 0; i < n; i++) {
-      const attr = this.product.attributes[i].split(':');
-      if (attr.length >= 2) {
-        this.attributes.push({
-          'key': attr[0],
-          'value': attr[1]
-        });
+       this.bigPic = this.product.images[0];
+          const n = this.product.attributes.length;
+          for (let i = 0; i < n; i++) {
+            const attr = this.product.attributes[i].split(':');
+            if (attr.length >= 2) {
+              this.attributes.push({
+                'key': attr[0],
+                'value': attr[1]
+              });
+            }
+          }
+        console.log('No Store or ID given');
       }
-    }
+    });
+
   }
+  onResize() {
+    const width = window.innerWidth;
+    if (width > 900) {
+      this.breakpoint = 'row';
+    } else {
+      this.breakpoint = 'column';
+    }
+ }
   sizeChange(size_id) {
     this.size_id = size_id;
     const key = ';' + this.size_id + ';' + this.color_id + ';';

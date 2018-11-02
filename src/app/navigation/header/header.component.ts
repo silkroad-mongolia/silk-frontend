@@ -2,7 +2,11 @@ import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/cor
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
-// import { CategoryModel, SubCategoryModel  } from './header.module';
+import * as URL from 'url-parse';
+import {SignupComponent } from '../../auth/signup/signup.component';
+import {LoginComponent } from '../../auth/login/login.component';
+import {MatDialog} from '@angular/material';
+
 
 @Component({
   selector: 'app-header',
@@ -14,16 +18,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   searchString = '';
 
-  subCategories: SubCategoryModel[] = [];
-  categories: CategoryModel[] = [
-    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-    {name: 'Woman Dress', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-    {name: 'Bags', subCategories: [{name: 'tom tsunh', link: '/handbag'}, {name: 'jijig tsunh', link: '/handbag'}]},
-  ];
+
   @Output() sidenavToggle = new EventEmitter<void>();
 
-  constructor(private authService: AuthService, private router: Router ) {  }
+  constructor(private authService: AuthService, private router: Router, public dialog: MatDialog ) {  }
 
   onToggleSideNav() {
     this.sidenavToggle.emit();
@@ -41,24 +39,34 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   search() {
-    console.log('searched');
-    console.log(this.searchString);
-    if (this.searchString.startsWith('https://')) {
-      console.log('this is link');
-      console.log(this.searchString);
-      const url = this.router.parseUrl(decodeURIComponent(this.searchString));
-      // console.log(url.queryParamMap);
-      console.log(url.queryParams['id']);
-      const product_id = url.queryParams['id'];
-      console.log(product_id);
-      this.router.navigate(['/product?id=' + product_id]);
+    if (this.searchString.startsWith('https://item.taobao.com/item')) {
+      const url = URL(this.searchString, {} , true);
+      const product_id = url.query['id'];
+      if (product_id) {
+        this.router.navigate(['/product', 'taobao', product_id]);
+      }
     }
   }
 
   ngOnDestroy() {
     this.authListenerSubs.unsubscribe();
   }
-  toggleCategory(index: number) {
-    this.subCategories = this.categories[index].subCategories;
+  signupDialog(): void {
+    const dialogRef = this.dialog.open(SignupComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  loginDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

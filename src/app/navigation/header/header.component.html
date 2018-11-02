@@ -1,17 +1,17 @@
-<mat-toolbar-row fxLayoutAlign="end end">
-  <div>
+<mat-toolbar-row fxLayoutAlign="end center">
+  <div fxLayoutAlign="center center">
     <a routerLink="/">Заавар</a>
-    <mat-icon>call</mat-icon>
-    <span fxFlex="60">98434955</span>
+    <mat-icon fxFlex>call</mat-icon>
+    <span>98434955</span>
   </div>
 
 </mat-toolbar-row>
 <mat-toolbar-row>
-  <!-- <div>
+  <div  fxHide.md fxHide.lg fxHide.xl>
     <button mat-icon-button (click)="onToggleSideNav()">
       <mat-icon>menu</mat-icon>
     </button>
-  </div> -->
+  </div>
   <div fxFlex="80" fxLayoutAlign="space-between center">
     <img src="assets/image/logo.png" routerLink="/" height="50" width="180">
     <div>
@@ -20,45 +20,34 @@
       </button>
     </div>
     <div>
-      <input type="text" name="search" (click)="search()" [(ngModel)]="searchString" >
-      <button mat-icon-button matSuffix>
+      <mat-form-field>
+        <input type="text" matInput  name="search" [(ngModel)]="searchString">
+        <button mat-icon-button (click)="search()" matSuffix>
         <mat-icon style="color: black;">search</mat-icon>
-      </button>
-      <span id="searchBtn" (click)="search()">
-      </span>
+        </button>
+      </mat-form-field>
+
     </div>
   </div>
 
-  <div fxFlex style="color: white; "></div>
+  <div fxFlex></div>
   <button mat-button>
     <mat-icon>shopping_cart</mat-icon>
   </button>
-  <button mat-button>
-    <mat-icon>favorite_border</mat-icon>
+  <button mat-button >
+    <mat-icon fxHide.xs fxHide.sm >favorite_border</mat-icon>
   </button>
-  <button mat-button [matMenuTriggerFor]="menu">
-    <mat-icon>account_circle</mat-icon>
+  <button mat-button  [matMenuTriggerFor]="menu">
+    <mat-icon  fxHide.xs fxHide.sm >person_outline</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <div>
       <ul fxLayout="column">
-        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</button>
-        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/signup" routerLinkActive="warn">Signup</button>
+        <button *ngIf="!userIsAuthenticated" mat-button routerLinkActive="mat-accent" (click)="loginDialog()">Login</button>
+        <button *ngIf="!userIsAuthenticated" mat-button routerLinkActive="warn" (click)="signupDialog()">Signup</button>
         <button *ngIf="userIsAuthenticated" mat-button (click)="onLogout()">Logout</button>
         <button *ngIf="!userIsAuthenticated" mat-button routerLink="/profile">Profile</button>
       </ul>
     </div>
   </mat-menu>
 </mat-toolbar-row>
-<mat-toolbar>
-  <div>
-    <div class="dropdown"  *ngFor="let category of categories ; let i = index" (mouseenter)="toggleCategory(i)" >
-    <button style="width: 100px" mat-button fxLayoutAlign="center center">{{category.name}}</button>
-    <div class="dropdown-content">
-        <h4 *ngFor="let subCategory of subCategories"><a href="subCategory.link">{{subCategory.name}}</a></h4>
-    </div>
-  </div>
-
-  </div>
-
-</mat-toolbar>

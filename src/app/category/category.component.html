@@ -1,5 +1,6 @@
+
 <div>
-  <div fxLyaout="column" fxFlex="25">
+  <div fxLyaout="column" fxFlex="25" fxHide.xs fxHide.sm>
     <div style="height: 80px;" fxLayoutAlign="center center">
       <span >Ангилал</span>
     </div>
@@ -14,7 +15,7 @@
     </div>
   </div>
 
-  <slideshow fxFlex="75" #slideshow [imageUrls]="imageUrls" [height]="height" [minHeight]="minHeight" [arrowSize]="arrowSize"
+  <slideshow fxFlex #slideshow [imageUrls]="imageUrls" [height]="height" [minHeight]="minHeight" [arrowSize]="arrowSize"
     [showArrows]="showArrows" [disableSwiping]="disableSwiping" [autoPlay]="autoPlay" [stopAutoPlayOnSlide]="stopAutoPlayOnSlide"
     [debug]="debug" [backgroundSize]="backgroundSize" [backgroundPosition]="backgroundPosition" [backgroundRepeat]="backgroundRepeat"
     [showDots]="showDots" [dotColor]="dotColor" [showCaptions]="showCaptions" [captionColor]="captionColor"

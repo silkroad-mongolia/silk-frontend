@@ -10,6 +10,7 @@
       <mat-checkbox *ngFor="let filter of activeFilter.filters" [value]="filter"> {{filter}}</mat-checkbox>
     </mat-expansion-panel>
   </div> -->
+  <app-topnav></app-topnav>
   <mat-tab-group>
     <mat-tab>
       <ng-template mat-tab-label>
@@ -40,8 +41,7 @@
       <button mat-button>Хайх</button>
       <button mat-button>Цэвэрлэх</button>
       </div>
-
-      <mat-grid-list cols="4">
+      <mat-grid-list [cols]="breakpoint" (window:resize)="onResize()">
         <mat-grid-tile *ngFor="let product of porducts">
           <mat-card>
               <div fxLayout="column">
@@ -78,7 +78,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-grid-list cols="2" rowHeight="1:1,3">
+      <mat-grid-list cols="2">
         <mat-grid-tile *ngFor="let product of porducts">
           <div fxLayout="column">
             <div>

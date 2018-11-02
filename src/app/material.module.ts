@@ -24,7 +24,8 @@ import {
     MatSnackBarModule,
     MatProgressBarModule,
     MatTableModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTreeModule
   } from '@angular/material';
   import {NgModule} from '@angular/core';
 
@@ -55,7 +56,8 @@ import {
       MatRadioModule,
       MatSnackBarModule,
       MatProgressBarModule,
-      MatChipsModule
+      MatChipsModule,
+      MatTreeModule
 
     ],
   })
