@@ -3,6 +3,10 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 import * as URL from 'url-parse';
+import {SignupComponent } from '../../auth/signup/signup.component';
+import {LoginComponent } from '../../auth/login/login.component';
+import {MatDialog} from '@angular/material';
+
 
 @Component({
   selector: 'app-header',
@@ -17,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   @Output() sidenavToggle = new EventEmitter<void>();
 
-  constructor(private authService: AuthService, private router: Router ) {  }
+  constructor(private authService: AuthService, private router: Router, public dialog: MatDialog ) {  }
 
   onToggleSideNav() {
     this.sidenavToggle.emit();
@@ -47,5 +51,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authListenerSubs.unsubscribe();
   }
+  signupDialog(): void {
+    const dialogRef = this.dialog.open(SignupComponent, {
+      width: '250px',
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  loginDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

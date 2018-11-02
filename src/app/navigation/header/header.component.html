@@ -20,10 +20,13 @@
       </button>
     </div>
     <div>
-      <input type="text" matInput  name="search" [(ngModel)]="searchString">
-      <button mat-icon-button (click)="search()">
-        <mat-icon style="color: black;" matSuffix>search</mat-icon>
-      </button>
+      <mat-form-field>
+        <input type="text" matInput  name="search" [(ngModel)]="searchString">
+        <button mat-icon-button (click)="search()" matSuffix>
+        <mat-icon style="color: black;">search</mat-icon>
+        </button>
+      </mat-form-field>
+
     </div>
   </div>
 
@@ -31,17 +34,17 @@
   <button mat-button>
     <mat-icon>shopping_cart</mat-icon>
   </button>
-  <button mat-button>
-    <mat-icon>favorite_border</mat-icon>
+  <button mat-button >
+    <mat-icon fxHide.xs fxHide.sm >favorite_border</mat-icon>
   </button>
-  <button mat-button>
-    <mat-icon>person_outline</mat-icon>
+  <button mat-button  [matMenuTriggerFor]="menu">
+    <mat-icon  fxHide.xs fxHide.sm >person_outline</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <div>
       <ul fxLayout="column">
-        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/login" routerLinkActive="mat-accent">Login</button>
-        <button *ngIf="!userIsAuthenticated" mat-button routerLink="/auth/signup" routerLinkActive="warn">Signup</button>
+        <button *ngIf="!userIsAuthenticated" mat-button routerLinkActive="mat-accent" (click)="loginDialog()">Login</button>
+        <button *ngIf="!userIsAuthenticated" mat-button routerLinkActive="warn" (click)="signupDialog()">Signup</button>
         <button *ngIf="userIsAuthenticated" mat-button (click)="onLogout()">Logout</button>
         <button *ngIf="!userIsAuthenticated" mat-button routerLink="/profile">Profile</button>
       </ul>

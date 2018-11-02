@@ -1,144 +1,135 @@
 <div *ngIf="isLoading">
   <mat-spinner></mat-spinner>
 </div>
-
 <div *ngIf="!isLoading">
-<app-topnav></app-topnav>
-  <div fxLayout="row" fxLayoutAlign="space-between start">
-    <div fxFlex="35">
-      <a [href]="bigPic">
-        <ngx-img-zoom fxLayoutAlign="center start" [imgSrc]="bigPic" [imgStyle]="'width:383px; height:363px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px  #dcdcdc;'"
-          [resultStyle]="'width:363px; height:363px; background-repeat: no-repeat; z-index: 2; position:absolute;
-                    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0), 0 1px 2px rgba(0,0,0,0);
-                      box-shadow: 0 1px 3px rgba(0,0,0,0), 0 1px 2px rgba(0,0,0,0); top: 0;left: 100%;'"
-          [lensStyle]="'width:100px; height:100px;  '" [containerStyle]="'width:400px; height:400px;'">
-        </ngx-img-zoom>
-      </a>
-
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <mat-grid-list cols="5">
+  <app-topnav></app-topnav>
+  <div [fxLayout]="breakpoint" (window:resize)="onResize()">
+    <div fxFlex>
         <a [href]="bigPic">
-          <div *ngFor="let image of product.images; let i=index">
-            <mat-grid-tile *ngIf="selectedImageIndex === i" class="selectedImage" fxLayoutAlign="center center">
-              <img src="{{image}}_50x50.jpg" (mouseenter)="togglePic(i)">
-            </mat-grid-tile>
-            <mat-grid-tile *ngIf="selectedImageIndex !== i" class="miniImage" fxLayoutAlign="center center">
-              <img src="{{image}}_50x50.jpg" (mouseenter)="togglePic(i)">
-            </mat-grid-tile>
-          </div>
+          <ngx-img-zoom fxLayoutAlign="center start" [imgSrc]="bigPic" [imgStyle]="'width:383px; height:363px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px  #dcdcdc;'"
+            [resultStyle]="'width:363px; height:363px; background-repeat: no-repeat; z-index: 2; position:absolute;
+                    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0), 0 1px 2px rgba(0,0,0,0);
+                      box-shadow: 0 1px 3px rgba(0,0,0,0), 0 1px 2px rgba(0,0,0,0); top: 0;left: 100%; '"
+            [lensStyle]="'width:100px; height:100px;  '" [containerStyle]="'width:400px; height:400px;'"  >
+          </ngx-img-zoom>
         </a>
-      </mat-grid-list>
-      <br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <mat-grid-list cols="10" fxLayout="row">
+          <a [href]="bigPic">
+            <div *ngFor="let image of product.images; let i=index" >
+              <mat-grid-tile *ngIf="selectedImageIndex === i" class="selectedImage" fxLayoutAlign="center center">
+                <img src="{{image}}_50x50.jpg" (mouseenter)="togglePic(i)">
+              </mat-grid-tile>
+              <mat-grid-tile *ngIf="selectedImageIndex !== i" class="miniImage" fxLayoutAlign="center center">
+                <img src="{{image}}_50x50.jpg" (mouseenter)="togglePic(i)">
+              </mat-grid-tile>
+            </div>
+          </a>
+        </mat-grid-list>
+        <br>
     </div>
-    <br>
-    <br>
-    <div class="productDescription" fxFlex="63" fxLayoutAlign="space-between start">
-
-      <div fxFlex="58">
-        <div>
-          <span>{{product.main_title}}</span>
-        </div>
-        <mat-card class="costmat" fxLayoutAlign="center center">
-          <!-- <span type="number"> {{ realcost }} ₮</span> -->
-          <h2>{{ product.price_regular }} ₮</h2>
-        </mat-card>
-
+    <div fxFlex>
+      <div class="productDescription"  fxLayoutAlign="space-between start">
         <div>
           <div>
-            <span> last 30 days: {{ product.cumm_comments }} ширхэг <button mat-icon-button matTooltip="Уг бараа нь бэлэн">
-                <mat-icon>help</mat-icon>
-              </button> </span>
-            <span> Нөөц: {{ product.stock }} ширхэг
+            <h3>{{product.main_title}}</h3>
+          </div>
+          <mat-card class="costmat" fxLayoutAlign="center center">
+            <!-- <span type="number"> {{ realcost }} ₮</span> -->
+            <h2>{{ product.price_regular }} ₮</h2>
+          </mat-card>
+
+          <div>
+            <div>
+              <span> last 30 days: {{ product.cumm_comments }} ширхэг
+                <button mat-icon-button matTooltip="Уг бараа нь бэлэн">
+                  <mat-icon>help</mat-icon>
+                </button>
+              </span>
+              <!-- <span> Нөөц: {{ product.stock }} ширхэг
               <button mat-icon-button matTooltip="Уг бараа нь бэлэн">
                 <mat-icon>help</mat-icon>
-              </button></span>
-            <!-- <span>Онцлог: {{ brand }}<button mat-icon-button matTooltip="Уг бараа нь бэлэн">
+              </button></span> -->
+              <!-- <span>Онцлог: {{ brand }}<button mat-icon-button matTooltip="Уг бараа нь бэлэн">
                 <mat-icon>help</mat-icon>
               </button></span> -->
-          </div>
-          <hr>
-          <div fxLayoutAlign="space-between none">
-            <div>
-              <span>Хэмжээ:</span>
-              <mat-chip-list>
-                <span *ngFor="let size of product.sizes; let i=index">
-                  <mat-chip style="width: 50px" (click)="sizeChange(size.id)" selected="true">{{size.name}}</mat-chip>
-                </span>
-              </mat-chip-list>
             </div>
-            <a routerLink="/">Хэрхэн размер сонгох вэ?</a>
+            <hr>
+            <div fxLayoutAlign="space-between none">
+              <div>
+                <span>Хэмжээ:</span>
+                <mat-chip-list>
+                  <span *ngFor="let size of product.sizes; let i=index">
+                    <mat-chip style="width: 50px" (click)="sizeChange(size.id)" selected="true">{{size.name}}</mat-chip>
+                  </span>
+                </mat-chip-list>
+              </div>
+              <a routerLink="/">Хэрхэн размер сонгох вэ?</a>
+            </div>
+            <div>
+              <span>Өнгө: </span>
+              <br>
+              <div>
+                <mat-chip-list>
+                  <span *ngFor="let color of product.colors">
+                    <img *ngIf="color.image" class="imgColors" src="{{color.image}}_50x50.jpg" style="width: 50px"
+                      (click)="colorChange(color.id)">
+                    <mat-chip *ngIf="!color.image" style="width: 50px; border-radius: 9%;" selected (click)="colorChange(color.id)">{{color.name}}</mat-chip>
+                  </span>
+                </mat-chip-list>
+              </div>
+            </div>
           </div>
           <div>
-            <span>Өнгө: </span>
-            <br>
-            <div>
-              <mat-chip-list>
-                <span *ngFor="let color of product.colors">
-                  <img *ngIf="color.image" class="imgColors" src="{{color.image}}_30x30.jpg" style="width: 60px; border-radius: 50%;"
-                    (click)="colorChange(color.id)">
-                  <mat-chip *ngIf="!color.image" style="width: 60px; border-radius: 9%;" selected (click)="colorChange(color.id)">{{color.name}}</mat-chip>
-                </span>
-              </mat-chip-list>
-            </div>
+            <span>
+              Тоо хэмжээ
+              <mat-form-field style="width: 40px;">
+                <input matInput value="1" type="number" min="1" [(ngModel)]="unit" (click)="unitChange()">
+              </mat-form-field> ширхэг, Нийт үнэ {{price_regular1}}
+            </span>
+          </div>
+          <button mat-raised-button (click)="cardSnackBar()">
+            <mat-icon>add_shopping_cart</mat-icon> Сагсанд нэмэх
+          </button>
+          <hr>
+          <div>
+            <button mat-raised-button (click)="likeSnackBar()">
+              <mat-icon>thumb_up</mat-icon> Таалагдсан бараанд нэмэх
+            </button>
+            <button mat-raised-button routerLink="/">Захиалах заавар үзэх</button>
           </div>
         </div>
-        <div>
-          <span>
-            Тоо хэмжээ
-            <mat-form-field style="width: 40px;" >
-              <input matInput value="1" type="number" min="1" [(ngModel)]="unit" (click)="unitChange()">
-            </mat-form-field> ширхэг, Нийт үнэ {{price_regular1}}
-          </span>
-        </div>
-        <button mat-raised-button (click)="cardSnackBar()">
-          <mat-icon>add_shopping_cart</mat-icon> Сагсанд нэмэх
-        </button>
-        <hr>
-        <div>
-          <button mat-raised-button (click)="likeSnackBar()">
-            <mat-icon>thumb_up</mat-icon> Таалагдсан бараанд нэмэх
-          </button>
-          <button mat-raised-button routerLink="/">Захиалах заавар үзэх</button>
-        </div>
       </div>
-
     </div>
   </div>
   <div>
-      <div ng2-carouselamos
-        [width]="900"
-        [items]="product.recommended"
-        [$item]="itemTemplate"
-        [$prev]="prevTemplate"
-        [$next]="nextTemplate"
-        (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
-      <ng-template #prevTemplate>
-        <mat-icon>keyboard_arrow_left</mat-icon>
-      </ng-template>
-
-      <ng-template #nextTemplate>
-        <mat-icon>keyboard_arrow_right</mat-icon>
-      </ng-template>
-
-      <ng-template let-item let-i="index" #itemTemplate>
-        <div class="items" fxLayout="column" fxLayoutAlign="center center" >
-          <img src="{{item.image}}_180x180.jpg" [title]="item.title">
-          <span>Үнэ: {{item.price}}</span>
-        </div>
-      </ng-template>
-    </div>
+    <div ng2-carouselamos width="100%" [items]="product.recommended" [$item]="itemTemplate" [$prev]="prevTemplate"
+      [$next]="nextTemplate" (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"></div>
+    <ng-template #prevTemplate>
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </ng-template>
+    <ng-template #nextTemplate>
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </ng-template>
+    <ng-template let-item let-i="index" #itemTemplate>
+      <div class="items" fxLayout="column" fxLayoutAlign="center center">
+        <img src="{{item.image}}_180x180.jpg" [title]="item.title">
+        <span>Үнэ: {{item.price}}</span>
+      </div>
+    </ng-template>
+  </div>
   <div>
     <br>
     <br>
     <br>
     <br>
     <mat-tab-group>
-      <mat-tab label="Зурган тайлбар">
-        <div fxLayout="row" fxLayoutAlign="space-around start">
+      <mat-tab label="Зурган тайлбар" >
+        <div fxLayout="row" fxLayoutAlign="space-around start"  [fxLayout]="breakpoint" (window:resize)="onResize()">
           <div fxFlex="70">
             <img *ngFor="let description_image of product.description_images" src="{{description_image}}">
           </div>
-          <div fxFlex="30">
+          <div fxFlex>
             <div *ngFor="let attribute of attributes; let i=index;" fxLayout="row">
               <div fxFlex="50">
                 {{attribute.key}}:
