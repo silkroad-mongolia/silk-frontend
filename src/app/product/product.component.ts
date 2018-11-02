@@ -17,6 +17,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 
 export class ProductComponent implements OnInit {
+  breakpoint: string;
   bigPic: string;
   selectedImageIndex = 0;
   color_id: string;
@@ -33,6 +34,8 @@ export class ProductComponent implements OnInit {
     ) {}
 
   ngOnInit() {
+    this.onResize();
+
     this.isLoading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('id') && paramMap.has('store')) {
@@ -260,6 +263,14 @@ export class ProductComponent implements OnInit {
     });
 
   }
+  onResize() {
+    const width = window.innerWidth;
+    if (width > 900) {
+      this.breakpoint = 'row';
+    } else {
+      this.breakpoint = 'column';
+    }
+ }
   sizeChange(size_id) {
     this.size_id = size_id;
     const key = ';' + this.size_id + ';' + this.color_id + ';';

@@ -1,23 +1,22 @@
-<mat-card>
-  <form [formGroup]="loginForm" >
-    <mat-form-field>
-      <input matInput placeholder="utas, email ali neg ni" formControlName="email"   type="email" required>
-      <mat-error *ngIf="email.invalid && email.touched">
-        Your email does not look right
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="password" formControlName="password"  type="password" required>
-      <mat-hint align="end">Must have one letter, and one number</mat-hint>
-      <mat-error *ngIf="password.invalid && password.touched">
-        Your email or password does not look right
-      </mat-error>
-    </mat-form-field>
-    <br>
-    <br>
-    <hr>
-    <button mat-raised-button color="primary" *ngIf="!isLoading" (click)="onLogin()" >login</button>
-
+<form [formGroup]="loginForm">
+  <mat-form-field>
+    <input matInput placeholder="utas, email ali neg ni" formControlName="email" type="email" required>
+    <mat-error *ngIf="email.invalid && email.touched">
+      Your email does not look right
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="password" formControlName="password" type="password" required>
+    <mat-hint align="end">Must have one letter, and one number</mat-hint>
+    <mat-error *ngIf="password.invalid && password.touched">
+      Your email or password does not look right
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" *ngIf="!isLoading" (click)="onLogin()">login</button>
+  <button mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="space-around center">
+      <i class="fa fa-facebook-square" aria-hidden="false"></i> Facebookeer oroh
+    </button>
+    <button mat-raised-button color="warn" fxLayout="row" fxLayoutAlign="space-around center">
+      <i class="fa fa-google" aria-hidden="false"></i> Facebookeer oroh
+    </button>
 </form>
-</mat-card>
