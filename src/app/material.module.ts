@@ -25,7 +25,7 @@ import {
     MatProgressBarModule,
     MatTableModule,
     MatChipsModule,
-    MatTreeModule
+    MatTreeModule,
   } from '@angular/material';
   import {NgModule} from '@angular/core';
 
